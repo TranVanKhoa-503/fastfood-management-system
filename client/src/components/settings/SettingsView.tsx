@@ -20,24 +20,55 @@ export const SettingsView: React.FC = () => {
   const { addToast } = useToast();
   const [activeTab, setActiveTab] = useState<'general' | 'profile' | 'appearance' | 'notifications' | 'security'>('general');
 
+  const defaults = {
+    restaurantName: 'FastFood Vietnam Express',
+    hotline: '1900 6868',
+    taxCode: '0108899889',
+    adminName: 'Nguyễn Quản Trị',
+    adminEmail: 'admin@fastfood.vn',
+    adminPhone: '0988776655',
+    notifyNewOrder: true,
+    notifyLowStock: true,
+    notifyReviews: false,
+  };
+  const [savedSettings] = useState(() => {
+    try {
+      const raw = localStorage.getItem('fastfood_settings_v1');
+      return raw ? { ...defaults, ...JSON.parse(raw) } : defaults;
+    } catch {
+      return defaults;
+    }
+  });
+
   // General state
-  const [restaurantName, setRestaurantName] = useState('FastFood Vietnam Express');
-  const [hotline, setHotline] = useState('1900 6868');
-  const [taxCode, setTaxCode] = useState('0108899889');
+  const [restaurantName, setRestaurantName] = useState(savedSettings.restaurantName);
+  const [hotline, setHotline] = useState(savedSettings.hotline);
+  const [taxCode, setTaxCode] = useState(savedSettings.taxCode);
   const [currency, setCurrency] = useState('VND (đ)');
 
   // Profile state
-  const [adminName, setAdminName] = useState('Nguyễn Quản Trị');
-  const [adminEmail, setAdminEmail] = useState('admin@fastfood.vn');
-  const [adminPhone, setAdminPhone] = useState('0988776655');
+  const [adminName, setAdminName] = useState(savedSettings.adminName);
+  const [adminEmail, setAdminEmail] = useState(savedSettings.adminEmail);
+  const [adminPhone, setAdminPhone] = useState(savedSettings.adminPhone);
 
   // Notification state
-  const [notifyNewOrder, setNotifyNewOrder] = useState(true);
-  const [notifyLowStock, setNotifyLowStock] = useState(true);
-  const [notifyReviews, setNotifyReviews] = useState(false);
+  const [notifyNewOrder, setNotifyNewOrder] = useState(savedSettings.notifyNewOrder);
+  const [notifyLowStock, setNotifyLowStock] = useState(savedSettings.notifyLowStock);
+  const [notifyReviews, setNotifyReviews] = useState(savedSettings.notifyReviews);
 
   const handleSave = () => {
-    addToast('Cài đặt đã được lưu thành công vào hệ thống!', 'success');
+    localStorage.setItem('fastfood_settings_v1', JSON.stringify({
+      restaurantName,
+      hotline,
+      taxCode,
+      adminName,
+      adminEmail,
+      adminPhone,
+      notifyNewOrder,
+      notifyLowStock,
+      notifyReviews,
+    }));
+    addToast('Cài đặt đã được lưu trên trình duyệt này.', 'success');
   };
 
   return (
@@ -195,14 +226,14 @@ export const SettingsView: React.FC = () => {
           <div className="space-y-6 max-w-xl">
             <div>
               <h3 className="text-base font-bold text-slate-900 dark:text-white">Cấu hình Thông báo</h3>
-              <p className="text-xs text-slate-400">Quản lý các sự kiện phát tín hiệu âm thanh và popup</p>
+              <p className="text-xs text-slate-400">Lưu tùy chọn hiển thị trên trình duyệt hiện tại</p>
             </div>
 
             <div className="space-y-4">
               <label className="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
                 <div>
                   <p className="text-xs font-bold text-slate-900 dark:text-white">Thông báo đơn hàng mới</p>
-                  <p className="text-[11px] text-slate-400">Phát âm thanh chuông khi có khách đặt món</p>
+                  <p className="text-[11px] text-slate-400">Lưu tùy chọn thông báo đơn mới cho bản demo</p>
                 </div>
                 <input
                   type="checkbox"
@@ -215,7 +246,7 @@ export const SettingsView: React.FC = () => {
               <label className="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
                 <div>
                   <p className="text-xs font-bold text-slate-900 dark:text-white">Cảnh báo nguyên liệu / Món sắp hết</p>
-                  <p className="text-[11px] text-slate-400">Gửi cảnh báo đến bếp khi số lượng tồn thấp</p>
+                  <p className="text-[11px] text-slate-400">Tùy chọn giao diện; hệ thống chưa có mô-đun tồn kho</p>
                 </div>
                 <input
                   type="checkbox"
@@ -228,7 +259,7 @@ export const SettingsView: React.FC = () => {
               <label className="flex items-center justify-between p-3.5 rounded-xl border border-slate-200 dark:border-slate-800 cursor-pointer">
                 <div>
                   <p className="text-xs font-bold text-slate-900 dark:text-white">Thông báo đánh giá & phản hồi mới</p>
-                  <p className="text-[11px] text-slate-400">Nhận thông báo khi khách gửi đánh giá sao</p>
+                  <p className="text-[11px] text-slate-400">Lưu tùy chọn thông báo đánh giá cho bản demo</p>
                 </div>
                 <input
                   type="checkbox"
@@ -245,45 +276,23 @@ export const SettingsView: React.FC = () => {
           </div>
         )}
 
-        {/* SECURITY TAB (UI CƠ BẢN) */}
+        {/* Security is intentionally described as unavailable until authentication exists. */}
         {activeTab === 'security' && (
           <div className="space-y-6 max-w-xl">
             <div>
               <h3 className="text-base font-bold text-slate-900 dark:text-white">Bảo mật & Quyền truy cập</h3>
-              <p className="text-xs text-slate-400">Quản lý mật khẩu và xác thực hai lớp (2FA)</p>
-            </div>
-
-            <div className="space-y-4">
-              <Input
-                label="Mật khẩu hiện tại"
-                type="password"
-                placeholder="••••••••"
-              />
-              <Input
-                label="Mật khẩu mới"
-                type="password"
-                placeholder="••••••••"
-              />
-              <Input
-                label="Xác nhận mật khẩu mới"
-                type="password"
-                placeholder="••••••••"
-              />
+              <p className="text-xs text-slate-400">Trạng thái chức năng bảo mật của phiên bản hiện tại</p>
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
               <div>
-                <p className="text-xs font-bold text-slate-900 dark:text-white">Xác thực 2 yếu tố (2FA)</p>
-                <p className="text-[11px] text-slate-400">Bảo vệ tài khoản bằng mã OTP Google Authenticator</p>
+                <p className="text-xs font-bold text-slate-900 dark:text-white">Đăng nhập, đổi mật khẩu và 2FA</p>
+                <p className="text-[11px] text-slate-400">Chưa khả dụng vì phiên bản này chưa có mô-đun tài khoản và xác thực phía máy chủ.</p>
               </div>
               <span className="text-[10px] font-bold px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300">
-                Chưa kích hoạt
+                Chưa triển khai
               </span>
             </div>
-
-            <Button onClick={handleSave} variant="primary" leftIcon={<Save className="w-4 h-4" />}>
-              Đổi mật khẩu
-            </Button>
           </div>
         )}
       </div>

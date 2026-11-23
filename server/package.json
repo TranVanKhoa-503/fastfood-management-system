@@ -8,7 +8,10 @@
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
     "seed": "tsx src/scripts/01_setup_fastfood.ts",
-    "seed:js": "node src/scripts/01_setup_fastfood.js"
+    "seed:js": "node scripts/01_setup_fastfood.js",
+    "backup": "node scripts/export_backup.js",
+    "backup:demo": "node scripts/generate_demo_backup.js",
+    "restore": "node scripts/restore_backup.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

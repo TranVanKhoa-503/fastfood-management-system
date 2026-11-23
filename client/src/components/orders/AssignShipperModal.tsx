@@ -43,7 +43,9 @@ export const AssignShipperModal: React.FC<AssignShipperModalProps> = ({
         params: storeId ? { storeId } : {},
       });
       if (res.data.success) {
-        setShippers(res.data.data);
+        setShippers(res.data.data.filter((shipper: IShipper) =>
+          shipper.status === 'available' || shipper._id === currentShipperId
+        ));
       }
     } catch (err: any) {
       addToast(err.message || 'Không tải được danh sách tài xế', 'error');

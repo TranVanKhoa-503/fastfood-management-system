@@ -14,6 +14,7 @@ export type PaymentMethod = 'cash' | 'card' | 'momo' | 'vnpay';
 export interface IOrderItem {
   menuItemId: mongoose.Types.ObjectId;
   name: string;
+  category?: string;
   qty: number;
   price: number;
 }
@@ -44,6 +45,7 @@ const OrderItemSchema = new Schema<IOrderItem>(
   {
     menuItemId: { type: Schema.Types.ObjectId, ref: 'MenuItem', required: true },
     name: { type: String, required: true },
+    category: { type: String, enum: ['Burgers', 'Pizzas', 'Drinks', 'Sides', 'Desserts', 'Combos'] },
     qty: { type: Number, required: true, min: 1 },
     price: { type: Number, required: true, min: 0 },
   },

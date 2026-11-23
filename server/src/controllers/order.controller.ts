@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { OrderService } from '../services/order.service.js';
+import { OrderStatus } from '../models/Order.js';
 
 export class OrderController {
   static async getOrders(req: Request, res: Response) {
@@ -12,14 +13,14 @@ export class OrderController {
         storeId: storeId as string,
         startDate: startDate as string,
         endDate: endDate as string,
-        page: page ? parseInt(page as string, 10) : 1,
-        limit: limit ? parseInt(limit as string, 10) : 10,
+        page: page ? Number(page) : 1,
+        limit: limit ? Number(limit) : 10,
         sortBy: sortBy as string,
         sortOrder: sortOrder as 'asc' | 'desc',
       });
       res.json({ success: true, data: result });
     } catch (error: any) {
-      res.status(500).json({ success: false, message: error.message });
+      res.status(error?.name === 'MongoServerError' ? 500 : 400).json({ success: false, message: error.message });
     }
   }
 
@@ -28,7 +29,8 @@ export class OrderController {
       const order = await OrderService.getOrderById(req.params.id);
       res.json({ success: true, data: order });
     } catch (error: any) {
-      res.status(404).json({ success: false, message: error.message });
+      const invalidId = error.message === 'Invalid order ID';
+      res.status(invalidId ? 400 : 404).json({ success: false, message: error.message });
     }
   }
 
@@ -44,10 +46,14 @@ export class OrderController {
   static async updateStatus(req: Request, res: Response) {
     try {
       const { status } = req.body;
-      if (!status) {
+      if (typeof status !== 'string' || !status) {
         return res.status(400).json({ success: false, message: 'Status is required' });
       }
-      const order = await OrderService.updateStatus(req.params.id, status);
+      const validStatuses: OrderStatus[] = ['pending', 'confirmed', 'preparing', 'ready', 'out_for_delivery', 'delivered', 'cancelled'];
+      if (!validStatuses.includes(status as OrderStatus)) {
+        return res.status(400).json({ success: false, message: 'Invalid order status' });
+      }
+      const order = await OrderService.updateStatus(req.params.id, status as OrderStatus);
       res.json({ success: true, data: order });
     } catch (error: any) {
       res.status(400).json({ success: false, message: error.message });
@@ -82,7 +88,7 @@ export class OrderController {
       res.setHeader('Content-Disposition', `attachment; filename="orders-${Date.now()}.csv"`);
       res.status(200).send('\uFEFF' + csv);
     } catch (error: any) {
-      res.status(500).json({ success: false, message: error.message });
+      res.status(error?.name === 'MongoServerError' ? 500 : 400).json({ success: false, message: error.message });
     }
   }
 }

@@ -2,6 +2,9 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { Store } from '../models/Store.js';
 import { Order } from '../models/Order.js';
+import { Shipper } from '../models/Shipper.js';
+import { MenuItem } from '../models/MenuItem.js';
+import { escapeRegex } from '../utils/query.js';
 
 export class StoreController {
   static async getStores(req: Request, res: Response) {
@@ -14,7 +17,9 @@ export class StoreController {
       }
 
       if (search && (search as string).trim()) {
-        const regex = new RegExp((search as string).trim(), 'i');
+        const term = (search as string).trim();
+        if (term.length > 100) return res.status(400).json({ success: false, message: 'Search text must be 100 characters or fewer' });
+        const regex = new RegExp(escapeRegex(term), 'i');
         query.$or = [{ name: regex }, { address: regex }, { phone: regex }];
       }
 
@@ -120,6 +125,12 @@ export class StoreController {
         location && Array.isArray(location.coordinates)
           ? [Number(location.coordinates[0]), Number(location.coordinates[1])]
           : [105.8542, 21.0285]; // Default Hanoi [lng, lat]
+      if (coordinates.some((value) => !Number.isFinite(value)) || Math.abs(coordinates[0]) > 180 || Math.abs(coordinates[1]) > 90) {
+        return res.status(400).json({ success: false, message: 'Coordinates must be valid longitude and latitude values' });
+      }
+      if (status !== undefined && !['open', 'closed'].includes(status)) {
+        return res.status(400).json({ success: false, message: 'Store status must be open or closed' });
+      }
 
       const store = new Store({
         name,
@@ -159,10 +170,17 @@ export class StoreController {
       if (openHours) updateData.openHours = openHours;
       if (status) updateData.status = status;
       if (location && Array.isArray(location.coordinates)) {
+        const coordinates = [Number(location.coordinates[0]), Number(location.coordinates[1])];
+        if (coordinates.some((value) => !Number.isFinite(value)) || Math.abs(coordinates[0]) > 180 || Math.abs(coordinates[1]) > 90) {
+          return res.status(400).json({ success: false, message: 'Coordinates must be valid longitude and latitude values' });
+        }
         updateData.location = {
           type: 'Point',
-          coordinates: [Number(location.coordinates[0]), Number(location.coordinates[1])],
+          coordinates,
         };
+      }
+      if (status !== undefined && !['open', 'closed'].includes(status)) {
+        return res.status(400).json({ success: false, message: 'Store status must be open or closed' });
       }
 
       const store = await Store.findByIdAndUpdate(id, updateData, {
@@ -187,6 +205,17 @@ export class StoreController {
         return res.status(400).json({ success: false, message: 'Invalid store ID' });
       }
 
+      const [orders, shippers, menuItems] = await Promise.all([
+        Order.exists({ storeId: id }),
+        Shipper.exists({ storeId: id }),
+        MenuItem.exists({ storeId: id }),
+      ]);
+      if (orders || shippers || menuItems) {
+        return res.status(409).json({
+          success: false,
+          message: 'Store is referenced by orders, shippers, or menu items and cannot be deleted',
+        });
+      }
       const store = await Store.findByIdAndDelete(id);
       if (!store) {
         return res.status(404).json({ success: false, message: 'Store not found' });

@@ -1,0 +1,226 @@
+[
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "name": "Nguyễn Văn Hùng",
+    "email": "vanhung.nguyen@gmail.com",
+    "phone": "0912345678",
+    "address": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "totalSpent": {
+      "$numberInt": "594000"
+    },
+    "orderCount": {
+      "$numberInt": "6"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001110"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001171"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "name": "Trần Thị Mai Hương",
+    "email": "maihuong.tran@gmail.com",
+    "phone": "0987654321",
+    "address": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "totalSpent": {
+      "$numberInt": "1701000"
+    },
+    "orderCount": {
+      "$numberInt": "6"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001110"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001172"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "name": "Lê Hoàng Nam",
+    "email": "hoangnam.le@yahoo.com",
+    "phone": "0903112233",
+    "address": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "totalSpent": {
+      "$numberInt": "701000"
+    },
+    "orderCount": {
+      "$numberInt": "6"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001110"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001173"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "name": "Phạm Minh Trang",
+    "email": "minhtrang.pham@outlook.com",
+    "phone": "0938445566",
+    "address": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "totalSpent": {
+      "$numberInt": "803000"
+    },
+    "orderCount": {
+      "$numberInt": "6"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001111"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001174"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "name": "Đặng Quốc Bảo",
+    "email": "quocbao.dang@gmail.com",
+    "phone": "0945778899",
+    "address": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "totalSpent": {
+      "$numberInt": "1260000"
+    },
+    "orderCount": {
+      "$numberInt": "6"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001111"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001176"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08699"
+    },
+    "name": "Vũ Thùy Linh",
+    "email": "thuylinh.vu@gmail.com",
+    "phone": "0966332211",
+    "address": "36 Hoàng Cầu, Đống Đa, Hà Nội",
+    "totalSpent": {
+      "$numberInt": "874000"
+    },
+    "orderCount": {
+      "$numberInt": "5"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001111"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001177"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf0869a"
+    },
+    "name": "Hoàng Gia Huy",
+    "email": "giahuy.hoang@gmail.com",
+    "phone": "0977889900",
+    "address": "102 Lê Duẩn, Hoàn Kiếm, Hà Nội",
+    "totalSpent": {
+      "$numberInt": "596000"
+    },
+    "orderCount": {
+      "$numberInt": "5"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001111"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001177"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf0869b"
+    },
+    "name": "Bùi Thị Tuyết",
+    "email": "tuyetbui@gmail.com",
+    "phone": "0922114455",
+    "address": "25 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "totalSpent": {
+      "$numberInt": "598000"
+    },
+    "orderCount": {
+      "$numberInt": "5"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001111"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001178"
+      }
+    }
+  }
+]

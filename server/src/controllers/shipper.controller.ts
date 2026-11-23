@@ -2,6 +2,8 @@ import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { Shipper } from '../models/Shipper.js';
 import { Order } from '../models/Order.js';
+import { Store } from '../models/Store.js';
+import { escapeRegex } from '../utils/query.js';
 
 export class ShipperController {
   static async getShippers(req: Request, res: Response) {
@@ -10,15 +12,21 @@ export class ShipperController {
       const query: Record<string, any> = {};
 
       if (status && status !== 'all') {
+        if (!['available', 'busy', 'offline'].includes(String(status))) {
+          return res.status(400).json({ success: false, message: 'Invalid shipper status filter' });
+        }
         query.status = status;
       }
 
-      if (storeId && storeId !== 'all' && mongoose.isValidObjectId(storeId)) {
+      if (storeId && storeId !== 'all') {
+        if (!mongoose.isValidObjectId(storeId)) return res.status(400).json({ success: false, message: 'Invalid store ID filter' });
         query.storeId = new mongoose.Types.ObjectId(storeId as string);
       }
 
       if (search && (search as string).trim()) {
-        const regex = new RegExp((search as string).trim(), 'i');
+        const term = (search as string).trim();
+        if (term.length > 100) return res.status(400).json({ success: false, message: 'Search text must be 100 characters or fewer' });
+        const regex = new RegExp(escapeRegex(term), 'i');
         query.$or = [{ fullName: regex }, { phone: regex }, { licensePlate: regex }];
       }
 
@@ -28,7 +36,7 @@ export class ShipperController {
       const activeDeliveryCounts = await Order.aggregate([
         {
           $match: {
-            status: { $in: ['ready', 'out_for_delivery', 'preparing'] },
+            status: { $nin: ['delivered', 'cancelled'] },
             shipperId: { $ne: null },
           },
         },
@@ -70,7 +78,7 @@ export class ShipperController {
 
       const activeOrders = await Order.find({
         shipperId: id,
-        status: { $in: ['ready', 'out_for_delivery'] },
+        status: { $nin: ['delivered', 'cancelled'] },
       }).populate('storeId', 'name').populate('customerId', 'name phone');
 
       res.json({
@@ -94,6 +102,12 @@ export class ShipperController {
           success: false,
           message: 'FullName, phone, licensePlate, and storeId are required',
         });
+      }
+      if (!mongoose.isValidObjectId(storeId)) return res.status(400).json({ success: false, message: 'Invalid store ID' });
+      const store = await Store.findById(storeId);
+      if (!store) return res.status(404).json({ success: false, message: 'Store not found' });
+      if (status !== undefined && !['available', 'offline'].includes(status)) {
+        return res.status(400).json({ success: false, message: 'A new shipper must be available or offline' });
       }
 
       const shipper = new Shipper({
@@ -122,14 +136,31 @@ export class ShipperController {
 
       const { fullName, phone, vehicle, licensePlate, status, storeId } = req.body;
       const updateData: Record<string, any> = {};
+      const current = await Shipper.findById(id);
+      if (!current) return res.status(404).json({ success: false, message: 'Shipper not found' });
+      const [activeOrders, assignedOrderHistory] = await Promise.all([
+        Order.countDocuments({ shipperId: id, status: { $nin: ['delivered', 'cancelled'] } }),
+        Order.exists({ shipperId: id }),
+      ]);
 
-      if (fullName) updateData.fullName = fullName;
-      if (phone) updateData.phone = phone;
-      if (vehicle) updateData.vehicle = vehicle;
-      if (licensePlate) updateData.licensePlate = licensePlate;
-      if (status) updateData.status = status;
+      if (fullName !== undefined) updateData.fullName = fullName;
+      if (phone !== undefined) updateData.phone = phone;
+      if (vehicle !== undefined) updateData.vehicle = vehicle;
+      if (licensePlate !== undefined) updateData.licensePlate = licensePlate;
+      if (storeId !== undefined && !mongoose.isValidObjectId(storeId)) return res.status(400).json({ success: false, message: 'Invalid store ID' });
       if (storeId && mongoose.isValidObjectId(storeId)) {
+        const newStore = await Store.findById(storeId);
+        if (!newStore) return res.status(404).json({ success: false, message: 'Store not found' });
+        if (assignedOrderHistory && current.storeId.toString() !== String(storeId)) {
+          return res.status(409).json({ success: false, message: 'Shipper with order history cannot change stores' });
+        }
         updateData.storeId = new mongoose.Types.ObjectId(storeId);
+      }
+      if (status !== undefined) {
+        if (!['available', 'busy', 'offline'].includes(status)) return res.status(400).json({ success: false, message: 'Invalid shipper status' });
+        if (activeOrders > 0 && status !== 'busy') return res.status(409).json({ success: false, message: 'Shipper status is busy while active orders are assigned' });
+        if (activeOrders === 0 && status === 'busy') return res.status(409).json({ success: false, message: 'Busy status is managed by active order assignments' });
+        updateData.status = status;
       }
 
       const shipper = await Shipper.findByIdAndUpdate(id, updateData, {
@@ -154,6 +185,10 @@ export class ShipperController {
         return res.status(400).json({ success: false, message: 'Invalid shipper ID' });
       }
 
+      const assignedOrders = await Order.exists({ shipperId: id });
+      if (assignedOrders) {
+        return res.status(409).json({ success: false, message: 'Shipper is referenced by order history and cannot be deleted' });
+      }
       const shipper = await Shipper.findByIdAndDelete(id);
       if (!shipper) {
         return res.status(404).json({ success: false, message: 'Shipper not found' });

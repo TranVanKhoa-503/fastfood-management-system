@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import mongoose from 'mongoose';
 import { Review } from '../models/Review.js';
+import { Order } from '../models/Order.js';
+import { parsePagination } from '../utils/query.js';
 
 export class ReviewController {
   static async getReviews(req: Request, res: Response) {
@@ -9,16 +11,21 @@ export class ReviewController {
       const query: Record<string, any> = {};
 
       if (rating && rating !== 'all') {
-        query.rating = Number(rating);
+        const parsedRating = Number(rating);
+        if (!Number.isInteger(parsedRating) || parsedRating < 1 || parsedRating > 5) {
+          return res.status(400).json({ success: false, message: 'Rating filter must be a whole number from 1 to 5' });
+        }
+        query.rating = parsedRating;
       }
 
-      if (storeId && storeId !== 'all' && mongoose.isValidObjectId(storeId)) {
+      if (storeId && storeId !== 'all') {
+        if (!mongoose.isValidObjectId(storeId)) return res.status(400).json({ success: false, message: 'Invalid store ID filter' });
         query.storeId = new mongoose.Types.ObjectId(storeId as string);
       }
 
-      const p = parseInt(page as string, 10);
-      const l = parseInt(limit as string, 10);
-      const skip = (p - 1) * l;
+      const { page: p, limit: l, skip } = parsePagination(page as string, limit as string, 20);
+      const storeStatsMatch = storeId && storeId !== 'all' ? { $match: { storeId: query.storeId } } : null;
+      const storeStatsPipeline = storeStatsMatch ? [storeStatsMatch] : [];
 
       const [reviews, total, storeAverages] = await Promise.all([
         Review.find(query)
@@ -33,6 +40,7 @@ export class ReviewController {
           .limit(l),
         Review.countDocuments(query),
         Review.aggregate([
+          ...storeStatsPipeline,
           {
             $group: {
               _id: '$storeId',
@@ -64,6 +72,7 @@ export class ReviewController {
 
       // Rating breakdown for filter bar
       const ratingBreakdown = await Review.aggregate([
+        ...storeStatsPipeline,
         {
           $group: {
             _id: '$rating',
@@ -101,6 +110,28 @@ export class ReviewController {
           message: 'orderId, customerId, storeId, and rating are required',
         });
       }
+      const parsedRating = Number(rating);
+      if (!Number.isInteger(parsedRating) || parsedRating < 1 || parsedRating > 5) {
+        return res.status(400).json({ success: false, message: 'Rating must be a whole number from 1 to 5' });
+      }
+      if (comment !== undefined && (typeof comment !== 'string' || comment.length > 1000)) {
+        return res.status(400).json({ success: false, message: 'Comment must be text with at most 1000 characters' });
+      }
+
+      if (!mongoose.isValidObjectId(orderId) || !mongoose.isValidObjectId(customerId) || !mongoose.isValidObjectId(storeId)) {
+        return res.status(400).json({ success: false, message: 'Order, customer, or store ID is invalid' });
+      }
+
+      const order = await Order.findById(orderId);
+      if (!order) {
+        return res.status(404).json({ success: false, message: 'Order not found' });
+      }
+      if (order.status !== 'delivered') {
+        return res.status(400).json({ success: false, message: 'Only delivered orders can receive a review' });
+      }
+      if (order.customerId.toString() !== String(customerId) || order.storeId.toString() !== String(storeId)) {
+        return res.status(400).json({ success: false, message: 'Review customer and store must match the order' });
+      }
 
       const existing = await Review.findOne({ orderId });
       if (existing) {
@@ -114,7 +145,7 @@ export class ReviewController {
         orderId: new mongoose.Types.ObjectId(orderId),
         customerId: new mongoose.Types.ObjectId(customerId),
         storeId: new mongoose.Types.ObjectId(storeId),
-        rating: Number(rating),
+        rating: parsedRating,
         comment: comment || '',
       });
 
@@ -126,7 +157,8 @@ export class ReviewController {
 
       res.status(201).json({ success: true, data: populated });
     } catch (error: any) {
-      res.status(400).json({ success: false, message: error.message });
+      const isDuplicate = error?.code === 11000;
+      res.status(isDuplicate ? 409 : 400).json({ success: false, message: isDuplicate ? 'Review for this order already exists' : error.message });
     }
   }
 

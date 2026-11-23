@@ -233,6 +233,12 @@ export const seedDatabase = async () => {
     await mongoose.connect(MONGODB_URI);
     console.log('[Seed] Connection established. Cleaning existing collections...');
 
+    const models = [Store, Customer, MenuItem, Shipper, Order, Review];
+    const existingCounts = await Promise.all(models.map((model) => model.countDocuments()));
+    if (existingCounts.some((count) => count > 0) && !process.argv.includes('--reset')) {
+      throw new Error('Database already contains data. Re-run with --reset only if you intend to replace the demo dataset.');
+    }
+
     await Promise.all([
       Store.deleteMany({}),
       Customer.deleteMany({}),
@@ -257,16 +263,14 @@ export const seedDatabase = async () => {
     console.log(`[Seed] Inserted ${createdCustomers.length} customers.`);
 
     // 3. Create Menu Items
-    const createdMenuItems = await MenuItem.insertMany(
-      MENU_ITEMS_DATA.map((m) => ({ ...m, storeId: createdStores[0]._id }))
-    );
+    const createdMenuItems = await MenuItem.insertMany(MENU_ITEMS_DATA);
     console.log(`[Seed] Inserted ${createdMenuItems.length} menu items.`);
 
     // 4. Create Shippers
     const shippersToInsert = SHIPPERS_DATA.map((shp, idx) => ({
       ...shp,
       storeId: createdStores[idx % createdStores.length]._id,
-      status: (idx % 2 === 0 ? 'available' : 'busy') as 'available' | 'busy' | 'offline',
+      status: 'available' as 'available' | 'busy' | 'offline',
     }));
     const createdShippers = await Shipper.insertMany(shippersToInsert);
     console.log(`[Seed] Inserted ${createdShippers.length} shippers.`);
@@ -316,6 +320,7 @@ export const seedDatabase = async () => {
         chosenItems.push({
           menuItemId: item._id,
           name: item.name,
+          category: item.category,
           qty,
           price: item.price,
         });
@@ -324,7 +329,10 @@ export const seedDatabase = async () => {
 
       const deliveryFee = 15000;
       const totalAmount = subtotal + deliveryFee;
-      const status = orderStatuses[i % orderStatuses.length];
+      const candidateStatus = orderStatuses[i % orderStatuses.length];
+      const status: OrderStatus = i === 9
+        ? 'out_for_delivery'
+        : candidateStatus === 'out_for_delivery' && i !== 5 ? 'ready' : candidateStatus;
       const paymentMethod = paymentMethods[i % paymentMethods.length];
 
       // Status history
@@ -366,8 +374,9 @@ export const seedDatabase = async () => {
         });
       }
 
-      const assignedShipperId =
-        ['out_for_delivery', 'delivered', 'ready'].includes(status) ? shipper._id : null;
+      const assignedShipperId = status === 'out_for_delivery'
+        ? createdShippers[i % createdShippers.length]._id
+        : status === 'delivered' ? shipper._id : null;
 
       ordersToInsert.push({
         customerId: customer._id,
@@ -397,6 +406,17 @@ export const seedDatabase = async () => {
     const createdOrders = await Order.insertMany(ordersToInsert);
     console.log(`[Seed] Inserted ${createdOrders.length} orders.`);
 
+    const activeShipperIds = new Set(
+      ordersToInsert
+        .filter((order) => order.shipperId && !['delivered', 'cancelled'].includes(order.status))
+        .map((order) => order.shipperId.toString())
+    );
+    await Promise.all(createdShippers.map((shipper, index) =>
+      Shipper.findByIdAndUpdate(shipper._id, {
+        status: activeShipperIds.has(shipper._id.toString()) ? 'busy' : 'available',
+      })
+    ));
+
     // Update customers with spent and count
     for (const [custId, stats] of customerSpendMap.entries()) {
       await Customer.findByIdAndUpdate(custId, {
@@ -419,7 +439,7 @@ export const seedDatabase = async () => {
       'Tuyệt vời! Chi nhánh phục vụ rất chu đáo.',
     ];
 
-    const reviewsToInsert = deliveredOrders.slice(0, 20).map((ord, idx) => {
+    const reviewsToInsert = deliveredOrders.slice(0, 15).map((ord, idx) => {
       const rating = 4 + (idx % 2); // 4 or 5 stars with a few 3s
       return {
         orderId: ord._id,
@@ -437,6 +457,7 @@ export const seedDatabase = async () => {
     console.log('✅ [Seed] Database seeded successfully!');
   } catch (error) {
     console.error('❌ [Seed] Error seeding database:', error);
+    process.exitCode = 1;
   } finally {
     await mongoose.disconnect();
     console.log('[Seed] Disconnected from MongoDB.');

@@ -1,0 +1,187 @@
+[
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "name": "FastFood Hoàn Kiếm - Flagship",
+    "address": "25 Tràng Tiền, Quận Hoàn Kiếm, Hà Nội",
+    "phone": "024-3825-1101",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        {
+          "$numberDouble": "105.8542"
+        },
+        {
+          "$numberDouble": "21.0285"
+        }
+      ]
+    },
+    "openHours": {
+      "open": "07:30",
+      "close": "23:00"
+    },
+    "status": "open",
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001104"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001104"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "name": "FastFood Cầu Giấy - Express",
+    "address": "180 Xuân Thủy, Quận Cầu Giấy, Hà Nội",
+    "phone": "024-3754-2202",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        {
+          "$numberDouble": "105.7876"
+        },
+        {
+          "$numberDouble": "21.0371"
+        }
+      ]
+    },
+    "openHours": {
+      "open": "08:00",
+      "close": "22:30"
+    },
+    "status": "open",
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "name": "FastFood Bến Nghé - Q1",
+    "address": "68 Nguyễn Huệ, Phường Bến Nghé, Quận 1, TP. Hồ Chí Minh",
+    "phone": "028-3829-3303",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        {
+          "$numberDouble": "106.7028"
+        },
+        {
+          "$numberDouble": "10.7745"
+        }
+      ]
+    },
+    "openHours": {
+      "open": "08:00",
+      "close": "23:30"
+    },
+    "status": "open",
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "name": "FastFood Landmark 81",
+    "address": "720A Điện Biên Phủ, Phường 22, Quận Bình Thạnh, TP. Hồ Chí Minh",
+    "phone": "028-3911-4404",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        {
+          "$numberDouble": "106.7218"
+        },
+        {
+          "$numberDouble": "10.7952"
+        }
+      ]
+    },
+    "openHours": {
+      "open": "09:00",
+      "close": "22:00"
+    },
+    "status": "open",
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "name": "FastFood Đà Nẵng Riverside",
+    "address": "150 Bạch Đằng, Quận Hải Châu, TP. Đà Nẵng",
+    "phone": "0236-388-5505",
+    "location": {
+      "type": "Point",
+      "coordinates": [
+        {
+          "$numberDouble": "108.2238"
+        },
+        {
+          "$numberDouble": "16.0678"
+        }
+      ]
+    },
+    "openHours": {
+      "open": "08:00",
+      "close": "22:00"
+    },
+    "status": "closed",
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001105"
+      }
+    }
+  }
+]

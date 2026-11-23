@@ -39,6 +39,11 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
   if (!order) return null;
 
   const handleUpdateStatus = async (nextStatus: OrderStatus) => {
+    if (nextStatus === 'out_for_delivery' && !order.shipperId) {
+      addToast('Hãy gán tài xế trước khi bắt đầu giao hàng.', 'error');
+      setAssignModalOpen(true);
+      return;
+    }
     setUpdatingStatus(true);
     try {
       const res = await api.patch(`/orders/${order._id}/status`, { status: nextStatus });
@@ -47,7 +52,7 @@ export const OrderDetailModal: React.FC<OrderDetailModalProps> = ({
         onOrderUpdated();
       }
     } catch (err: any) {
-      addToast(err.message || 'Lỗi khi cập nhật trạng thái đơn', 'error');
+      addToast(err.response?.data?.message || err.message || 'Lỗi khi cập nhật trạng thái đơn', 'error');
     } finally {
       setUpdatingStatus(false);
     }

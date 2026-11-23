@@ -1,6 +1,8 @@
-# 🍔 FASTFOOD MANAGEMENT SYSTEM & ADMIN DASHBOARD
+# Quản lý dịch vụ giao thức ăn nhanh
 
-Hệ thống quản trị và vận hành chuỗi cửa hàng thức ăn nhanh toàn diện (Fast Food Chain Management), được xây dựng chuẩn kiến trúc Full-Stack hiện đại với **Node.js/Express/MongoDB Mongoose (TypeScript)** và **React/Vite (TypeScript)**.
+Đồ án tìm hiểu cách dùng **NoSQLBooster** để quản trị và khai thác cơ sở dữ liệu tài liệu MongoDB cho dịch vụ giao thức ăn nhanh, đồng thời xây dựng ứng dụng minh họa bằng **Node.js/Express/Mongoose** và **React/Vite**.
+
+Ứng dụng kết nối MongoDB. NoSQLBooster dùng để duyệt collection và document, chạy truy vấn MongoDB, aggregation, xem index và đối chiếu dữ liệu mà ứng dụng tạo ra. File MySQL trong gói chỉ là phần tham khảo bổ sung, không thuộc luồng demo chính.
 
 ---
 
@@ -8,9 +10,9 @@ Hệ thống quản trị và vận hành chuỗi cửa hàng thức ăn nhanh t
 
 ### 1. Quản lý Đơn hàng (`/orders`)
 - **Tìm kiếm & Lọc đa điều kiện**: Tìm theo mã đơn, tên khách, số điện thoại, địa chỉ nhận hàng; lọc theo trạng thái (`pending`, `confirmed`, `preparing`, `ready`, `out_for_delivery`, `delivered`, `cancelled`), chi nhánh cửa hàng và khoảng ngày đặt.
-- **Quy trình xử lý chuẩn (Workflow Stepper)**: Cập nhật tuần tự từ tiếp nhận đơn ➔ xác nhận ➔ vào bếp ➔ sẵn sàng ➔ đang giao ➔ hoàn tất hoặc hủy đơn.
+- **Quy trình xử lý chuẩn (Workflow Stepper)**: Cập nhật tuần tự từ tiếp nhận đơn ➔ xác nhận ➔ vào bếp ➔ sẵn sàng ➔ đang giao ➔ hoàn tất hoặc hủy đơn. Hệ thống yêu cầu gán tài xế trước khi bắt đầu giao.
 - **Audit Log tự động**: Mỗi lần cập nhật trạng thái qua `PATCH /api/orders/:id/status` tự động push bản ghi `{ status, at }` vào `statusHistory` và cập nhật `updatedAt`.
-- **Gán tài xế giao hàng (`/orders/:id/assign-shipper`)**: Gán shipper cho đơn hàng và tự động đổi trạng thái shipper sang `busy` (Bận). Khi đơn hàng hoàn tất hoặc hủy, tài xế tự động trở lại `available` nếu không còn đơn khác đang giao.
+- **Gán tài xế giao hàng (`/orders/:id/assign-shipper`)**: Chỉ nhận tài xế sẵn sàng cùng chi nhánh; thao tác giữ tài xế có kiểm tra cạnh tranh. Khi đơn giao xong hoặc hủy, tài xế trở lại `available` nếu không còn đơn hoạt động khác.
 - **Tạo đơn hàng mới (Create Order Modal)**: Chọn khách hàng, chọn chi nhánh phục vụ, chọn nhiều món ăn với số lượng linh hoạt, tự động tính tổng tiền (`subtotal + deliveryFee = totalAmount`), cập nhật địa chỉ giao hàng và ghi chú.
 - **Xuất dữ liệu CSV (`/orders/export/csv`)**: Xuất file Excel/CSV theo bộ lọc hiện tại với định dạng UTF-8 BOM chuẩn tiếng Việt.
 
@@ -49,11 +51,10 @@ Sử dụng các MongoDB Aggregation Pipeline tối ưu hiệu năng:
 - Quản lý danh mục món ăn (Burgers, Pizzas, Drinks, Sides, Desserts, Combos), giá bán, mô tả, hình ảnh và toggle trạng thái mở bán/tắt bán.
 
 ### 8. Cài đặt Hệ thống (`/settings`)
-- **General**: Tên chuỗi nhà hàng, Hotline, Mã số thuế, đơn vị tiền tệ.
-- **Profile**: Thông tin quản trị viên.
-- **Appearance**: Chuyển đổi Dark Mode / Light Mode thời thượng, hỗ trợ lưu vào `localStorage`.
-- **Notifications**: Cấu hình âm thanh chuông đơn hàng mới, cảnh báo tồn kho, đánh giá mới.
-- **Security**: Đổi mật khẩu và giao diện cấu hình xác thực hai lớp (2FA).
+- **General/Profile**: Chỉnh sửa tên chuỗi, hotline, mã số thuế và thông tin hồ sơ; lưu trong `localStorage` của trình duyệt hiện tại.
+- **Appearance**: Chuyển đổi Light/Dark Mode; lựa chọn giao diện được lưu trong trình duyệt.
+- **Notifications**: Lưu các tùy chọn giao diện cho bản demo. Chưa có dịch vụ phát thông báo hoặc mô-đun tồn kho.
+- **Security**: Trạng thái hiện hành được nêu rõ trong ứng dụng. Phiên bản này chưa có đăng nhập, đổi mật khẩu hay 2FA.
 
 ---
 
@@ -70,7 +71,10 @@ fastfood/
 │   ├── tsconfig.json
 │   ├── .env.example
 │   ├── scripts/
-│   │   └── 01_setup_fastfood.js # Standalone script seed dữ liệu cho Mongo Shell / NoSQLBooster
+│   │   ├── 01_setup_fastfood.js # Seed dữ liệu bằng Node.js
+│   │   └── generate_demo_backup.js
+│   ├── scripts/nosqlbooster_demo_queries.js # Truy vấn MongoDB để chạy trong NoSQLBooster
+│   ├── sql/mysql/               # SQL schema, demo data và hướng dẫn MySQL tham khảo
 │   └── src/
 │       ├── config/              # Kết nối Database và Biến môi trường
 │       ├── models/              # Mongoose Models (Store, Customer, MenuItem, Shipper, Order, Review)
@@ -113,7 +117,7 @@ fastfood/
 
 ## ⚙️ Yêu cầu Môi trường
 
-- **Node.js**: Phiên bản 18 trở lên (khuyên dùng Node 20+)
+- **Node.js**: Phiên bản 20.19 trở lên (hoặc phiên bản Node được Vite hiện hành hỗ trợ)
 - **MongoDB**: MongoDB Community Server bản 6.0+ chạy tại `localhost:27017` hoặc MongoDB Atlas Connection String.
 - **Trình duyệt**: Google Chrome, Edge, Brave hoặc Firefox.
 
@@ -158,10 +162,13 @@ Chạy lệnh sau tại thư mục gốc:
 ```bash
 npm run seed
 ```
-*Hoặc chạy trực tiếp script JavaScript độc lập:*
+
+Lệnh seed chỉ chấp nhận cơ sở dữ liệu trống. Nếu cần thay thế dữ liệu demo đang có, hãy sao lưu trước rồi chạy `npm --prefix server run seed -- --reset`.
+*Hoặc chạy trực tiếp script JavaScript bằng Node.js:*
 ```bash
 node server/scripts/01_setup_fastfood.js
 ```
+Không chạy file seed này trong cửa sổ query của NoSQLBooster; hãy dùng NoSQLBooster để kết nối và khai thác database sau khi seed.
 
 **Dữ liệu được khởi tạo tự động bao gồm:**
 - **5 Cửa hàng / Chi nhánh**: Hà Nội (Hoàn Kiếm, Cầu Giấy), TP.HCM (Quận 1, Bình Thạnh Landmark 81), Đà Nẵng với tọa độ GeoJSON Point `[lng, lat]` và chỉ mục `2dsphere`.
@@ -169,11 +176,22 @@ node server/scripts/01_setup_fastfood.js
 - **12 Món ăn & Combo**: Burger, Pizza, Khoai tây lắc, Gà rán, Trà sữa, Kem Lava, Combo Party.
 - **5 Tài xế Shipper**: Thông tin phương tiện và biển số xe.
 - **45 Đơn hàng**: Trải dài trong 30 ngày qua với đầy đủ lịch sử trạng thái (`statusHistory`), hỗ trợ hiển thị biểu đồ phân tích doanh thu.
-- **20 Đánh giá & Phản hồi**: Điểm đánh giá từ 3⭐ đến 5⭐ kèm bình luận.
+- **15 Đánh giá & Phản hồi**: Điểm đánh giá từ 3⭐ đến 5⭐ kèm bình luận.
+
+### SQL tham khảo (không bắt buộc cho demo NoSQL)
+
+Mở `server/sql/mysql/fastfood_demo_mysql.sql` bằng MySQL Workbench và chạy toàn bộ file, hoặc dùng:
+```bash
+mysql -u root -p < server/sql/mysql/fastfood_demo_mysql.sql
+```
+File tạo schema `fastfood_demo_mysql` độc lập. Đây là bản SQL tham khảo; ứng dụng chạy thật vẫn dùng MongoDB.
+File SQL có 5 view báo cáo và 2 procedure mẫu để gán shipper, kiểm tra chuyển trạng thái, ghi lịch sử, cập nhật chi tiêu khi hoàn tất và giải phóng shipper.
 
 ---
 
 ## 🔍 Kết nối NoSQLBooster với MongoDB
+
+Hướng dẫn cài kết nối, duyệt dữ liệu, truy vấn, aggregation và kịch bản demo có trong [HUONG_DAN_NOSQLBOOSTER.md](HUONG_DAN_NOSQLBOOSTER.md). File truy vấn mẫu có thể mở trực tiếp trong Script Editor của NoSQLBooster tại `server/scripts/nosqlbooster_demo_queries.js`.
 
 Để xem và truy vấn trực tiếp cơ sở dữ liệu trên GUI:
 
@@ -241,6 +259,17 @@ npm run client
 ```
 
 Mở trình duyệt truy cập: **`http://localhost:5173`**
+
+Trên Windows có thể dùng `scripts/start-demo.ps1` để khởi động MongoDB, cài dependencies nếu thiếu, nạp seed khi database còn trống và chạy ứng dụng. Xem [HUONG_DAN_CHAY.md](HUONG_DAN_CHAY.md) để biết quy trình từng bước.
+
+## 💾 Sao lưu và khôi phục
+
+- `npm run backup`: xuất sáu collection ra Extended JSON trong `server/backup/`.
+- `npm run backup:demo`: tạo lại bộ dữ liệu mẫu để khôi phục khi chưa có database đang chạy.
+- `npm run restore`: khôi phục backup vào database trống.
+- Khôi phục thay thế dữ liệu cần có xác nhận tường minh: `npm --prefix server run restore -- backup --replace`.
+
+Backup chỉ chứa dữ liệu của database đang cấu hình trong `server/.env`. Kiểm tra `MONGODB_URI` trước khi sao lưu hoặc khôi phục.
 
 ---
 

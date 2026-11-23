@@ -1,7 +1,7 @@
 /**
  * 01_setup_fastfood.js - Standalone MongoDB Seed Script
- * Can be run with: node server/scripts/01_setup_fastfood.js
- * Or inside NoSQLBooster / Mongo Shell
+ * Run with Node.js: node server/scripts/01_setup_fastfood.js
+ * NoSQLBooster is used to connect to and inspect the seeded MongoDB database.
  */
 
 const mongoose = require('mongoose');
@@ -232,6 +232,12 @@ async function runSeed() {
 
     const db = mongoose.connection.db;
 
+    const collectionNames = ['stores', 'customers', 'menuitems', 'shippers', 'orders', 'reviews'];
+    const existingCounts = await Promise.all(collectionNames.map((name) => db.collection(name).countDocuments()));
+    if (existingCounts.some((count) => count > 0) && !process.argv.includes('--reset')) {
+      throw new Error('Database already contains data. Re-run with --reset only if you intend to replace the demo dataset.');
+    }
+
     // Clear collections
     await Promise.all([
       db.collection('stores').deleteMany({}),
@@ -265,7 +271,6 @@ async function runSeed() {
     // Insert Menu Items
     const menuWithDates = MENU_ITEMS_DATA.map((m) => ({
       ...m,
-      storeId: storeIds[0],
       createdAt: now,
       updatedAt: now,
     }));
@@ -276,7 +281,7 @@ async function runSeed() {
     const shippersWithDates = SHIPPERS_DATA.map((shp, idx) => ({
       ...shp,
       storeId: storeIds[idx % storeIds.length],
-      status: idx % 2 === 0 ? 'available' : 'busy',
+      status: 'available',
       createdAt: now,
       updatedAt: now,
     }));
@@ -314,6 +319,7 @@ async function runSeed() {
         items.push({
           menuItemId: mId,
           name: item.name,
+          category: item.category,
           qty,
           price: item.price,
         });
@@ -322,7 +328,10 @@ async function runSeed() {
 
       const deliveryFee = 15000;
       const totalAmount = subtotal + deliveryFee;
-      const status = orderStatuses[i % orderStatuses.length];
+      const candidateStatus = orderStatuses[i % orderStatuses.length];
+      const status = i === 9
+        ? 'out_for_delivery'
+        : candidateStatus === 'out_for_delivery' && i !== 5 ? 'ready' : candidateStatus;
       const paymentMethod = paymentMethods[i % paymentMethods.length];
       const customer = CUSTOMERS_DATA[i % CUSTOMERS_DATA.length];
 
@@ -344,7 +353,9 @@ async function runSeed() {
         history.push({ status: 'cancelled', at: new Date(orderDate.getTime() + 300000) });
       }
 
-      const assignedShipperId = ['out_for_delivery', 'delivered', 'ready'].includes(status) ? shpId : null;
+      const assignedShipperId = status === 'out_for_delivery'
+        ? shipperIds[i % shipperIds.length]
+        : status === 'delivered' ? shpId : null;
 
       ordersToInsert.push({
         customerId: cId,
@@ -373,6 +384,17 @@ async function runSeed() {
 
     const orderRes = await db.collection('orders').insertMany(ordersToInsert);
     const orderIds = Object.values(orderRes.insertedIds);
+
+    const busyShipperIds = new Set(
+      ordersToInsert
+        .filter((order) => order.shipperId && !['delivered', 'cancelled'].includes(order.status))
+        .map((order) => order.shipperId.toString())
+    );
+    for (let index = 0; index < shipperIds.length; index++) {
+      const shipperId = shipperIds[index];
+      const status = busyShipperIds.has(shipperId.toString()) ? 'busy' : 'available';
+      await db.collection('shippers').updateOne({ _id: shipperId }, { $set: { status } });
+    }
 
     // Update customer spend stats
     for (const [key, stats] of customerSpendMap.entries()) {
@@ -412,9 +434,14 @@ async function runSeed() {
     console.log('🎉 [01_setup_fastfood.js] MongoDB Seed completed successfully!');
   } catch (err) {
     console.error('❌ [Seed Error]:', err);
+    process.exitCode = 1;
   } finally {
     await mongoose.disconnect();
   }
 }
 
-runSeed();
+if (require.main === module) {
+  runSeed();
+}
+
+module.exports = { STORES_DATA, MENU_ITEMS_DATA, CUSTOMERS_DATA, SHIPPERS_DATA, runSeed };

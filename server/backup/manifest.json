@@ -1,0 +1,12 @@
+{
+  "database": "fastfood_db",
+  "exportedAt": "2026-11-22T14:50:10.489Z",
+  "counts": {
+    "stores": 5,
+    "customers": 8,
+    "menuitems": 12,
+    "shippers": 5,
+    "orders": 45,
+    "reviews": 15
+  }
+}

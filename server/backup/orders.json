@@ -1,0 +1,4704 @@
+[
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b0"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "89000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "104000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793955214118"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793955334118"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793955814118"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793956414118"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793956714118"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793957914118"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793955214118"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793957914118"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b1"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ab"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a2"
+        },
+        "name": "Khoai Tây Chiên Lắc Phô Mai",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "39000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "406000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "421000"
+    },
+    "status": "delivered",
+    "paymentMethod": "card",
+    "deliveryAddress": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793242459119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793242579119"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793243059119"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793243659119"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793243959119"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793245159119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793242459119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793245159119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b2"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ac"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a5"
+        },
+        "name": "Coca Cola Tươi Đá Lạnh L",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "22000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "217000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "232000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793582294119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793582414119"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793582894119"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793583494119"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793583794119"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793584994119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793582294119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793584994119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b3"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ad"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "45000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "60000"
+    },
+    "status": "delivered",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794129268119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794129388119"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794129868119"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794130468119"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794130768119"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794131968119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794129268119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794131968119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b4"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869e"
+        },
+        "name": "Crispy Spicy Chicken Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "75000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869f"
+        },
+        "name": "BBQ Bacon Smokehouse Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "95000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "429000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "444000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793178760119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793178880119"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793179360119"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793179960119"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793180260119"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793181460119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793178760119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793181460119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b5"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08699"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "149000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "164000"
+    },
+    "status": "out_for_delivery",
+    "paymentMethod": "card",
+    "deliveryAddress": "36 Hoàng Cầu, Đống Đa, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793179799119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793179919119"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793180399119"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793180999119"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793181299119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793179799119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793181299119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b6"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869a"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "208000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "223000"
+    },
+    "status": "preparing",
+    "paymentMethod": "momo",
+    "deliveryAddress": "102 Lê Duẩn, Hoàn Kiếm, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794053950119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794054070119"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794054550119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794053950119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794054550119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b7"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869b"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a7"
+        },
+        "name": "Combo Party Tiệc Tùng 4 Người",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "289000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a8"
+        },
+        "name": "Combo Solo Meal Năng Lượng",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "99000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "722000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "737000"
+    },
+    "status": "confirmed",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "25 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795082116119"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1795082236119"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795082116119"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795082236119"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b8"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "178000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "193000"
+    },
+    "status": "pending",
+    "paymentMethod": "cash",
+    "deliveryAddress": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794285518120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794285518120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794285518120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086b9"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a2"
+        },
+        "name": "Khoai Tây Chiên Lắc Phô Mai",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "39000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "734000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "749000"
+    },
+    "status": "out_for_delivery",
+    "paymentMethod": "card",
+    "deliveryAddress": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794391680120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794391800120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794392280120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794392880120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794393180120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794391680120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794393180120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ba"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "138000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "153000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793157760120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793157880120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793158360120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793158960120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793159260120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793160460120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793157760120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793160460120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086bb"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ab"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a7"
+        },
+        "name": "Combo Party Tiệc Tùng 4 Người",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "289000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "623000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "638000"
+    },
+    "status": "delivered",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794750754120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794750874120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794751354120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794751954120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794752254120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794753454120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794750754120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794753454120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086bc"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ac"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869e"
+        },
+        "name": "Crispy Spicy Chicken Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "75000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "328000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "343000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793514412120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793514532120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793515012120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793515612120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793515912120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793517112120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793514412120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793517112120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086bd"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08699"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ad"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a2"
+        },
+        "name": "Khoai Tây Chiên Lắc Phô Mai",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "39000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "367000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "382000"
+    },
+    "status": "delivered",
+    "paymentMethod": "card",
+    "deliveryAddress": "36 Hoàng Cầu, Đống Đa, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795070549120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1795070669120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1795071149120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1795071749120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1795072049120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1795073249120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795070549120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795073249120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086be"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869a"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "173000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "188000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "102 Lê Duẩn, Hoàn Kiếm, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793950436120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793950556120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793951036120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793951636120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793951936120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793953136120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793950436120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793953136120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086bf"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869b"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "90000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "105000"
+    },
+    "status": "ready",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "25 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794989389120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794989509120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794989989120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794990589120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794989389120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794990589120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c0"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869e"
+        },
+        "name": "Crispy Spicy Chicken Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "75000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869f"
+        },
+        "name": "BBQ Bacon Smokehouse Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "95000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "443000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "458000"
+    },
+    "status": "preparing",
+    "paymentMethod": "cash",
+    "deliveryAddress": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1792818699120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1792818819120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1792819299120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1792818699120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1792819299120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c1"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "328000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "343000"
+    },
+    "status": "confirmed",
+    "paymentMethod": "card",
+    "deliveryAddress": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793536315120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793536435120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793536315120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793536435120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c2"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "138000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "153000"
+    },
+    "status": "pending",
+    "paymentMethod": "momo",
+    "deliveryAddress": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795163435120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795163435120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795163435120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c3"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a7"
+        },
+        "name": "Combo Party Tiệc Tùng 4 Người",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "289000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a8"
+        },
+        "name": "Combo Solo Meal Năng Lượng",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "99000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "767000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "782000"
+    },
+    "status": "cancelled",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795067469120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1795067589120"
+          }
+        }
+      },
+      {
+        "status": "cancelled",
+        "at": {
+          "$date": {
+            "$numberLong": "1795067769120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795067469120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795067769120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c4"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "89000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "104000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794652637120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794652757120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794653237120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794653837120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794654137120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794655337120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794652637120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794655337120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c5"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08699"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ab"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "477000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "492000"
+    },
+    "status": "delivered",
+    "paymentMethod": "card",
+    "deliveryAddress": "36 Hoàng Cầu, Đống Đa, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794882257120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794882377120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794882857120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794883457120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794883757120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794884957120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794882257120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794884957120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c6"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869a"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ac"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a5"
+        },
+        "name": "Coca Cola Tươi Đá Lạnh L",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "22000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "230000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "245000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "102 Lê Duẩn, Hoàn Kiếm, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1792928864120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1792928984120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1792929464120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1792930064120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1792930364120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1792931564120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1792928864120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1792931564120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c7"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869b"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ad"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "90000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "105000"
+    },
+    "status": "delivered",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "25 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793354114120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793354234120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793354714120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793355314120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793355614120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793356814120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793354114120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793356814120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c8"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "89000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "104000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793433259120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793433379120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793433859120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793434459120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793434759120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793435959120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793433259120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793435959120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086c9"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "507000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "522000"
+    },
+    "status": "ready",
+    "paymentMethod": "card",
+    "deliveryAddress": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793328900120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793329020120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793329500120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793330100120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793328900120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793330100120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ca"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "69000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "84000"
+    },
+    "status": "preparing",
+    "paymentMethod": "momo",
+    "deliveryAddress": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793172573120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793172693120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793173173120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793172573120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793173173120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086cb"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a7"
+        },
+        "name": "Combo Party Tiệc Tùng 4 Người",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "289000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "334000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "349000"
+    },
+    "status": "confirmed",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794795063120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794795183120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794795063120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794795183120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086cc"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869e"
+        },
+        "name": "Crispy Spicy Chicken Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "75000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "328000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "343000"
+    },
+    "status": "pending",
+    "paymentMethod": "cash",
+    "deliveryAddress": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795327364120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795327364120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795327364120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086cd"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08699"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "298000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "313000"
+    },
+    "status": "cancelled",
+    "paymentMethod": "card",
+    "deliveryAddress": "36 Hoàng Cầu, Đống Đa, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794397029120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794397149120"
+          }
+        }
+      },
+      {
+        "status": "cancelled",
+        "at": {
+          "$date": {
+            "$numberLong": "1794397329120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794397029120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794397329120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ce"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869a"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a5"
+        },
+        "name": "Coca Cola Tươi Đá Lạnh L",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "22000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "148000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "163000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "102 Lê Duẩn, Hoàn Kiếm, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793521149120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793521269120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793521749120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793522349120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793522649120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793523849120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793521149120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793523849120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086cf"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869b"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ab"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a7"
+        },
+        "name": "Combo Party Tiệc Tùng 4 Người",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "289000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a8"
+        },
+        "name": "Combo Solo Meal Năng Lượng",
+        "category": "Combos",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "99000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "478000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "493000"
+    },
+    "status": "delivered",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "25 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794317481120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794317601120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794318081120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794318681120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794318981120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794320181120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794317481120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794320181120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d0"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ac"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "178000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "193000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794576610120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794576730120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794577210120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794577810120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794578110120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794579310120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794576610120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794579310120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d1"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ad"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a2"
+        },
+        "name": "Khoai Tây Chiên Lắc Phô Mai",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "39000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "555000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "570000"
+    },
+    "status": "delivered",
+    "paymentMethod": "card",
+    "deliveryAddress": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793011426120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793011546120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793012026120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793012626120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793012926120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793014126120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793011426120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793014126120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d2"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "138000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "153000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795070502120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1795070622120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1795071102120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1795071702120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1795072002120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1795073202120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795070502120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795073202120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d3"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "90000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "105000"
+    },
+    "status": "ready",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794712689120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794712809120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794713289120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794713889120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794712689120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794713889120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d4"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "89000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "104000"
+    },
+    "status": "preparing",
+    "paymentMethod": "cash",
+    "deliveryAddress": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794555018120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794555138120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794555618120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794555018120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794555618120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d5"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08699"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "477000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "492000"
+    },
+    "status": "confirmed",
+    "paymentMethod": "card",
+    "deliveryAddress": "36 Hoàng Cầu, Đống Đa, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794986940120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794987060120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794986940120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794987060120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d6"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869a"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "173000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "188000"
+    },
+    "status": "pending",
+    "paymentMethod": "momo",
+    "deliveryAddress": "102 Lê Duẩn, Hoàn Kiếm, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794216889120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794216889120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794216889120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d7"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf0869b"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": null,
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "45000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "60000"
+    },
+    "status": "cancelled",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "25 Nguyễn Đình Chiểu, Quận 3, TP.HCM",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793770088120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793770208120"
+          }
+        }
+      },
+      {
+        "status": "cancelled",
+        "at": {
+          "$date": {
+            "$numberLong": "1793770388120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793770088120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793770388120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d8"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08694"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "178000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "193000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "Tòa nhà R1 Royal City, 72A Nguyễn Trãi, Thanh Xuân, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793411140120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793411260120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793411740120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793412340120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793412640120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793413840120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793411140120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793413840120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086d9"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08695"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ab"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a0"
+        },
+        "name": "Pizza Pepperoni Passion 9\"",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "149000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a1"
+        },
+        "name": "Pizza Hải Sản Pesto Cao Cấp",
+        "category": "Pizzas",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "179000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a2"
+        },
+        "name": "Khoai Tây Chiên Lắc Phô Mai",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "39000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "695000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "710000"
+    },
+    "status": "delivered",
+    "paymentMethod": "card",
+    "deliveryAddress": "15 Duy Tân, Dịch Vọng Hậu, Cầu Giấy, Hà Nội",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1795236732120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1795236852120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1795237332120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1795237932120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1795238232120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1795239432120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795236732120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795239432120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086da"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08696"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ac"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a3"
+        },
+        "name": "Cánh Gà Sốt Chua Cay Hàn Quốc (4 miếng)",
+        "category": "Sides",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "69000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a4"
+        },
+        "name": "Trà Sữa Trân Châu Đường Đen",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "35000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a5"
+        },
+        "name": "Coca Cola Tươi Đá Lạnh L",
+        "category": "Drinks",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "22000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "148000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "163000"
+    },
+    "status": "delivered",
+    "paymentMethod": "momo",
+    "deliveryAddress": "Chung cư Vinhomes Central Park, 208 Nguyễn Hữu Cảnh, Bình Thạnh, TP.HCM",
+    "note": "Giao tầng 5 giúp tôi, gọi trước khi đến",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1792923463120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1792923583120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1792924063120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1792924663120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1792924963120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1792926163120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1792923463120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1792926163120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086db"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08697"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ad"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf086a6"
+        },
+        "name": "Bánh Kem Lava Chocolate Nóng Chảy",
+        "category": "Desserts",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "45000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "90000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "105000"
+    },
+    "status": "delivered",
+    "paymentMethod": "vnpay",
+    "deliveryAddress": "42 Tôn Đức Thắng, Phường Bến Nghé, Quận 1, TP.HCM",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1793166686120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1793166806120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1793167286120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1793167886120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1793168186120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1793169386120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1793166686120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1793169386120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086dc"
+    },
+    "customerId": {
+      "$oid": "6b030119771d087f9bf08698"
+    },
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "shipperId": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "items": [
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869d"
+        },
+        "name": "Double Cheeseburger Supreme",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "89000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869e"
+        },
+        "name": "Crispy Spicy Chicken Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "1"
+        },
+        "price": {
+          "$numberInt": "75000"
+        }
+      },
+      {
+        "menuItemId": {
+          "$oid": "6b030119771d087f9bf0869f"
+        },
+        "name": "BBQ Bacon Smokehouse Burger",
+        "category": "Burgers",
+        "qty": {
+          "$numberInt": "2"
+        },
+        "price": {
+          "$numberInt": "95000"
+        }
+      }
+    ],
+    "subtotal": {
+      "$numberInt": "354000"
+    },
+    "deliveryFee": {
+      "$numberInt": "15000"
+    },
+    "totalAmount": {
+      "$numberInt": "369000"
+    },
+    "status": "delivered",
+    "paymentMethod": "cash",
+    "deliveryAddress": "88 Trần Phú, Quận Hải Châu, TP. Đà Nẵng",
+    "note": "",
+    "statusHistory": [
+      {
+        "status": "pending",
+        "at": {
+          "$date": {
+            "$numberLong": "1794300948120"
+          }
+        }
+      },
+      {
+        "status": "confirmed",
+        "at": {
+          "$date": {
+            "$numberLong": "1794301068120"
+          }
+        }
+      },
+      {
+        "status": "preparing",
+        "at": {
+          "$date": {
+            "$numberLong": "1794301548120"
+          }
+        }
+      },
+      {
+        "status": "ready",
+        "at": {
+          "$date": {
+            "$numberLong": "1794302148120"
+          }
+        }
+      },
+      {
+        "status": "out_for_delivery",
+        "at": {
+          "$date": {
+            "$numberLong": "1794302448120"
+          }
+        }
+      },
+      {
+        "status": "delivered",
+        "at": {
+          "$date": {
+            "$numberLong": "1794303648120"
+          }
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1794300948120"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1794303648120"
+      }
+    },
+    "__v": {
+      "$numberInt": "0"
+    }
+  }
+]

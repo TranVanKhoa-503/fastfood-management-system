@@ -82,16 +82,18 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
       }
 
       if (storeRes.data.success) {
-        setStores(storeRes.data.data);
-        if (storeRes.data.data.length > 0) {
-          setSelectedStoreId(storeRes.data.data[0]._id);
+        const openStores = storeRes.data.data.filter((store: IStore) => store.status === 'open');
+        setStores(openStores);
+        if (openStores.length > 0) {
+          setSelectedStoreId(openStores[0]._id);
         }
       }
 
       if (menuRes.data.success) {
-        setMenuItems(menuRes.data.data);
-        if (menuRes.data.data.length > 0) {
-          setSelectedMenuToAdd(menuRes.data.data[0]._id);
+        const availableItems = menuRes.data.data.filter((item: IMenuItem) => item.isAvailable);
+        setMenuItems(availableItems);
+        if (availableItems.length > 0) {
+          setSelectedMenuToAdd(availableItems[0]._id);
         }
       }
     } catch (err: any) {
@@ -166,7 +168,7 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
       const payload = {
         customerId: selectedCustomerId,
         storeId: selectedStoreId,
-        items: orderItems,
+        items: orderItems.map(({ menuItemId, qty }) => ({ menuItemId, qty })),
         deliveryFee: Number(deliveryFee),
         paymentMethod,
         deliveryAddress,
@@ -180,7 +182,7 @@ export const CreateOrderModal: React.FC<CreateOrderModalProps> = ({
         onClose();
       }
     } catch (err: any) {
-      addToast(err.message || 'Lỗi khi tạo đơn hàng', 'error');
+      addToast(err.response?.data?.message || err.message || 'Lỗi khi tạo đơn hàng', 'error');
     } finally {
       setSubmitting(false);
     }

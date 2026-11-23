@@ -3,6 +3,8 @@ import { Order } from '../models/Order.js';
 import { Customer } from '../models/Customer.js';
 import { Store } from '../models/Store.js';
 import { Review } from '../models/Review.js';
+import { Shipper } from '../models/Shipper.js';
+import { parseDateRange } from '../utils/query.js';
 
 export interface DateFilter {
   startDate?: string;
@@ -17,21 +19,18 @@ export class AnalyticsService {
   static async getSummary(filter: DateFilter = {}) {
     const matchStage: Record<string, any> = {};
 
-    if (filter.startDate || filter.endDate) {
-      matchStage.createdAt = {};
-      if (filter.startDate) matchStage.createdAt.$gte = new Date(filter.startDate);
-      if (filter.endDate) {
-        const end = new Date(filter.endDate);
-        end.setHours(23, 59, 59, 999);
-        matchStage.createdAt.$lte = end;
-      }
-    }
+    if (filter.startDate || filter.endDate) matchStage.createdAt = parseDateRange(filter.startDate, filter.endDate);
 
-    if (filter.storeId && mongoose.isValidObjectId(filter.storeId)) {
+    if (filter.storeId) {
+      if (!mongoose.isValidObjectId(filter.storeId)) throw new Error('Invalid store ID filter');
       matchStage.storeId = new mongoose.Types.ObjectId(filter.storeId);
     }
 
-    const [orderStats, customerCount, storeCount, reviewStats] = await Promise.all([
+    const reviewMatch: Record<string, any> = {};
+    if (filter.storeId) reviewMatch.storeId = new mongoose.Types.ObjectId(filter.storeId);
+    if (filter.startDate || filter.endDate) reviewMatch.createdAt = parseDateRange(filter.startDate, filter.endDate);
+
+    const [orderStats, customerCount, storeCount, reviewStats, activeShippers] = await Promise.all([
       Order.aggregate([
         { $match: matchStage },
         {
@@ -58,8 +57,9 @@ export class AnalyticsService {
         },
       ]),
       Customer.countDocuments(),
-      Store.countDocuments(),
+      filter.storeId ? Store.countDocuments({ _id: matchStage.storeId }) : Store.countDocuments(),
       Review.aggregate([
+        { $match: reviewMatch },
         {
           $group: {
             _id: null,
@@ -68,6 +68,9 @@ export class AnalyticsService {
           },
         },
       ]),
+      filter.storeId
+        ? Shipper.countDocuments({ storeId: matchStage.storeId, status: { $ne: 'offline' } })
+        : Shipper.countDocuments({ status: { $ne: 'offline' } }),
     ]);
 
     const stats = orderStats[0] || {
@@ -88,6 +91,7 @@ export class AnalyticsService {
       avgOrderValue: Math.round(stats.avgOrderValue || 0),
       totalCustomers: customerCount,
       totalStores: storeCount,
+      activeShippers,
       avgRating: Number((rev.avgRating || 0).toFixed(1)),
       totalReviews: rev.totalReviews || 0,
     };
@@ -97,20 +101,22 @@ export class AnalyticsService {
    * Doanh thu theo ngày (Revenue by Day)
    */
   static async getDailyRevenue(days = 30, storeId?: string) {
+    if (!Number.isInteger(days) || days < 1 || days > 365) throw new Error('Days must be a whole number between 1 and 365');
     const startDate = new Date();
-    startDate.setDate(startDate.getDate() - days);
-    startDate.setHours(0, 0, 0, 0);
+    startDate.setUTCHours(0, 0, 0, 0);
+    startDate.setUTCDate(startDate.getUTCDate() - days + 1);
 
     const matchStage: Record<string, any> = {
       createdAt: { $gte: startDate },
       status: 'delivered',
     };
 
-    if (storeId && mongoose.isValidObjectId(storeId)) {
+    if (storeId) {
+      if (!mongoose.isValidObjectId(storeId)) throw new Error('Invalid store ID filter');
       matchStage.storeId = new mongoose.Types.ObjectId(storeId);
     }
 
-    return await Order.aggregate([
+    const aggregated = await Order.aggregate([
       { $match: matchStage },
       {
         $group: {
@@ -135,6 +141,15 @@ export class AnalyticsService {
         },
       },
     ]);
+    const byDate = new Map(aggregated.map((entry: any) => [entry.date, entry]));
+    const result: any[] = [];
+    for (let offset = 0; offset < days; offset++) {
+      const date = new Date(startDate);
+      date.setUTCDate(startDate.getUTCDate() + offset);
+      const key = date.toISOString().slice(0, 10);
+      result.push(byDate.get(key) || { date: key, revenue: 0, orderCount: 0, subtotal: 0, deliveryFee: 0 });
+    }
+    return result;
   }
 
   /**
@@ -199,7 +214,7 @@ export class AnalyticsService {
       { $unwind: { path: '$menuItem', preserveNullAndEmptyArrays: true } },
       {
         $group: {
-          _id: { $ifNull: ['$menuItem.category', 'Combos'] },
+          _id: { $ifNull: ['$items.category', { $ifNull: ['$menuItem.category', 'General'] }] },
           revenue: { $sum: { $multiply: ['$items.qty', '$items.price'] } },
           itemsSold: { $sum: '$items.qty' },
         },
@@ -220,9 +235,10 @@ export class AnalyticsService {
    * Tăng trưởng khách hàng (Customer Growth over time)
    */
   static async getCustomerGrowth(days = 30) {
+    if (!Number.isInteger(days) || days < 1 || days > 365) throw new Error('Days must be a whole number between 1 and 365');
     const startDate = new Date();
-    startDate.setDate(startDate.getDate() - days);
-    startDate.setHours(0, 0, 0, 0);
+    startDate.setUTCHours(0, 0, 0, 0);
+    startDate.setUTCDate(startDate.getUTCDate() - days + 1);
 
     return await Customer.aggregate([
       { $match: { createdAt: { $gte: startDate } } },
@@ -250,7 +266,8 @@ export class AnalyticsService {
    */
   static async getOrderStatusBreakdown(storeId?: string) {
     const matchStage: Record<string, any> = {};
-    if (storeId && mongoose.isValidObjectId(storeId)) {
+    if (storeId) {
+      if (!mongoose.isValidObjectId(storeId)) throw new Error('Invalid store ID filter');
       matchStage.storeId = new mongoose.Types.ObjectId(storeId);
     }
 
@@ -278,12 +295,15 @@ export class AnalyticsService {
    * Top món bán chạy (Top Selling Items)
    */
   static async getTopItems(limit = 8) {
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw new Error('Limit must be a whole number between 1 and 100');
     return await Order.aggregate([
       { $match: { status: 'delivered' } },
       { $unwind: '$items' },
       {
         $group: {
-          _id: '$items.name',
+          _id: '$items.menuItemId',
+          itemName: { $first: '$items.name' },
+          itemCategory: { $first: '$items.category' },
           menuItemId: { $first: '$items.menuItemId' },
           totalQty: { $sum: '$items.qty' },
           totalRevenue: { $sum: { $multiply: ['$items.qty', '$items.price'] } },
@@ -301,15 +321,15 @@ export class AnalyticsService {
       {
         $project: {
           _id: 0,
-          name: '$_id',
-          category: { $ifNull: ['$itemDetails.category', 'General'] },
+          name: { $ifNull: ['$itemDetails.name', '$itemName'] },
+          category: { $ifNull: ['$itemCategory', { $ifNull: ['$itemDetails.category', 'General'] }] },
           price: { $ifNull: ['$itemDetails.price', 0] },
           image: { $ifNull: ['$itemDetails.image', ''] },
           totalQty: 1,
           totalRevenue: 1,
         },
       },
-      { $sort: { totalQty: -1 } },
+      { $sort: { totalQty: -1, totalRevenue: -1, name: 1 } },
       { $limit: limit },
     ]);
   }
@@ -318,6 +338,7 @@ export class AnalyticsService {
    * Top khách hàng chi tiêu nhiều nhất (Top Customers)
    */
   static async getTopCustomers(limit = 10) {
+    if (!Number.isInteger(limit) || limit < 1 || limit > 100) throw new Error('Limit must be a whole number between 1 and 100');
     return await Customer.aggregate([
       { $sort: { totalSpent: -1, orderCount: -1 } },
       { $limit: limit },

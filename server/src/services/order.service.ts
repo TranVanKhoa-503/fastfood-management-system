@@ -2,6 +2,9 @@ import mongoose from 'mongoose';
 import { Order, OrderStatus, IOrder } from '../models/Order.js';
 import { Shipper } from '../models/Shipper.js';
 import { Customer } from '../models/Customer.js';
+import { MenuItem } from '../models/MenuItem.js';
+import { Store } from '../models/Store.js';
+import { csvCell, escapeRegex, parseDateRange, parsePagination } from '../utils/query.js';
 
 export interface OrderFilterParams {
   search?: string;
@@ -34,28 +37,31 @@ export class OrderService {
 
     const query: Record<string, any> = {};
 
+    const { page: safePage, limit: safeLimit, skip } = parsePagination(page, limit, 10, 5000);
+    if (sortOrder && !['asc', 'desc'].includes(sortOrder)) throw new Error('Sort order must be asc or desc');
+    const allowedSortFields = ['createdAt', 'updatedAt', 'totalAmount', 'status'];
+    const safeSortBy = sortBy && allowedSortFields.includes(sortBy) ? sortBy : 'createdAt';
+
     if (status && status !== 'all') {
+      const allowedStatuses = ['pending', 'confirmed', 'preparing', 'ready', 'out_for_delivery', 'delivered', 'cancelled'];
+      if (!allowedStatuses.includes(status)) throw new Error('Invalid order status filter');
       query.status = status;
     }
 
-    if (storeId && storeId !== 'all' && mongoose.isValidObjectId(storeId)) {
+    if (storeId && storeId !== 'all') {
+      if (!mongoose.isValidObjectId(storeId)) throw new Error('Invalid store ID filter');
       query.storeId = new mongoose.Types.ObjectId(storeId);
     }
 
     if (startDate || endDate) {
-      query.createdAt = {};
-      if (startDate) query.createdAt.$gte = new Date(startDate);
-      if (endDate) {
-        const end = new Date(endDate);
-        end.setHours(23, 59, 59, 999);
-        query.createdAt.$lte = end;
-      }
+      query.createdAt = parseDateRange(startDate, endDate);
     }
 
     // If search term provided (search by order ID or customer name/phone via populate lookup or direct search)
     let customerIds: mongoose.Types.ObjectId[] = [];
     if (search && search.trim()) {
-      const searchRegex = new RegExp(search.trim(), 'i');
+      if (search.trim().length > 100) throw new Error('Search text must be 100 characters or fewer');
+      const searchRegex = new RegExp(escapeRegex(search.trim()), 'i');
       if (mongoose.isValidObjectId(search.trim())) {
         query.$or = [{ _id: new mongoose.Types.ObjectId(search.trim()) }];
       } else {
@@ -71,8 +77,7 @@ export class OrderService {
       }
     }
 
-    const skip = (Number(page) - 1) * Number(limit);
-    const sort: Record<string, 1 | -1> = { [sortBy]: sortOrder === 'asc' ? 1 : -1 };
+    const sort: Record<string, 1 | -1> = { [safeSortBy]: sortOrder === 'asc' ? 1 : -1 };
 
     const [orders, total] = await Promise.all([
       Order.find(query)
@@ -81,15 +86,15 @@ export class OrderService {
         .populate('shipperId', 'fullName phone vehicle licensePlate status')
         .sort(sort)
         .skip(skip)
-        .limit(Number(limit)),
+        .limit(safeLimit),
       Order.countDocuments(query),
     ]);
 
     return {
       orders,
       pagination: {
-        page: Number(page),
-        limit: Number(limit),
+        page: safePage,
+        limit: safeLimit,
         total,
         totalPages: Math.ceil(total / Number(limit)),
       },
@@ -122,32 +127,77 @@ export class OrderService {
   static async createOrder(data: {
     customerId: string;
     storeId: string;
-    items: Array<{ menuItemId: string; name: string; qty: number; price: number }>;
+    items: Array<{ menuItemId: string; qty: number }>;
     deliveryFee?: number;
     paymentMethod?: string;
     deliveryAddress: string;
     note?: string;
   }) {
-    const subtotal = data.items.reduce((sum, item) => sum + item.price * item.qty, 0);
-    const deliveryFee = data.deliveryFee ?? 15000;
+    if (!mongoose.isValidObjectId(data.customerId) || !mongoose.isValidObjectId(data.storeId)) {
+      throw new Error('Invalid customer or store ID');
+    }
+    if (typeof data.deliveryAddress !== 'string' || !data.deliveryAddress.trim()) {
+      throw new Error('Delivery address is required');
+    }
+    if (!Array.isArray(data.items) || data.items.length === 0) {
+      throw new Error('An order must contain at least one menu item');
+    }
+    for (const item of data.items) {
+      if (!item || !mongoose.isValidObjectId(item.menuItemId) || !Number.isInteger(Number(item.qty)) || Number(item.qty) < 1 || Number(item.qty) > 99) {
+        throw new Error('Each order item must have a valid menu item and a positive whole quantity');
+      }
+    }
+    const paymentMethods = ['cash', 'card', 'momo', 'vnpay'];
+    const paymentMethod = data.paymentMethod || 'cash';
+    if (!paymentMethods.includes(paymentMethod)) throw new Error('Invalid payment method');
+
+    const [customer, store, menuItems] = await Promise.all([
+      Customer.findById(data.customerId),
+      Store.findById(data.storeId),
+      MenuItem.find({ _id: { $in: data.items.map((item) => item.menuItemId) }, isAvailable: true }),
+    ]);
+    if (!customer) throw new Error('Customer not found');
+    if (!store) throw new Error('Store not found');
+    if (store.status !== 'open') throw new Error('Cannot create an order for a closed store');
+
+    const menuById = new Map(menuItems.map((item) => [item._id.toString(), item]));
+    const quantities = new Map<string, number>();
+    for (const item of data.items) {
+      const key = item.menuItemId.toString();
+      quantities.set(key, (quantities.get(key) || 0) + Number(item.qty));
+    }
+    const orderItems = Array.from(quantities, ([menuItemId, qty]) => {
+      if (qty > 99) throw new Error('A menu item quantity cannot exceed 99 per order');
+      const menuItem = menuById.get(menuItemId);
+      if (!menuItem) throw new Error(`Menu item ${menuItemId} does not exist or is unavailable`);
+      return {
+        menuItemId: menuItem._id,
+        name: menuItem.name,
+        category: menuItem.category,
+        qty,
+        price: menuItem.price,
+      };
+    });
+
+    const subtotal = orderItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+    if (!Number.isSafeInteger(subtotal)) throw new Error('Order subtotal exceeds the supported VND amount');
+    const deliveryFee = Number(data.deliveryFee ?? 15000);
+    if (!Number.isSafeInteger(deliveryFee) || deliveryFee < 0) {
+      throw new Error('Delivery fee must be a non-negative whole VND amount');
+    }
     const totalAmount = subtotal + deliveryFee;
 
     const order = new Order({
       customerId: new mongoose.Types.ObjectId(data.customerId),
       storeId: new mongoose.Types.ObjectId(data.storeId),
-      items: data.items.map((it) => ({
-        menuItemId: new mongoose.Types.ObjectId(it.menuItemId),
-        name: it.name,
-        qty: Number(it.qty),
-        price: Number(it.price),
-      })),
+      items: orderItems,
       subtotal,
       deliveryFee,
       totalAmount,
       status: 'pending',
-      paymentMethod: data.paymentMethod || 'cash',
-      deliveryAddress: data.deliveryAddress,
-      note: data.note || '',
+      paymentMethod,
+      deliveryAddress: data.deliveryAddress.trim(),
+      note: typeof data.note === 'string' ? data.note.trim() : '',
       statusHistory: [{ status: 'pending', at: new Date() }],
     });
 
@@ -175,17 +225,31 @@ export class OrderService {
     }
 
     const previousStatus = order.status;
-    order.status = nextStatus;
-    order.statusHistory.push({
-      status: nextStatus,
-      at: new Date(),
-    });
-    order.updatedAt = new Date();
-
-    await order.save();
+    const allowedNextStatuses: Record<OrderStatus, OrderStatus[]> = {
+      pending: ['confirmed', 'cancelled'],
+      confirmed: ['preparing', 'cancelled'],
+      preparing: ['ready', 'cancelled'],
+      ready: ['out_for_delivery', 'cancelled'],
+      out_for_delivery: ['delivered', 'cancelled'],
+      delivered: [],
+      cancelled: [],
+    };
+    if (!allowedNextStatuses[previousStatus]?.includes(nextStatus)) {
+      throw new Error(`Cannot change order status from ${previousStatus} to ${nextStatus}`);
+    }
+    if (nextStatus === 'out_for_delivery' && !order.shipperId) {
+      throw new Error('Assign an available shipper before dispatching the order');
+    }
+    const changedAt = new Date();
+    const updatedOrder = await Order.findOneAndUpdate(
+      { _id: order._id, status: previousStatus },
+      { $set: { status: nextStatus }, $push: { statusHistory: { status: nextStatus, at: changedAt } } },
+      { new: true, runValidators: true }
+    );
+    if (!updatedOrder) throw new Error('Order changed while this request was being processed; refresh and try again');
 
     // If order is completed (delivered), update customer totalSpent
-    if (nextStatus === 'delivered' && previousStatus !== 'delivered') {
+    if (nextStatus === 'delivered') {
       await Customer.findByIdAndUpdate(order.customerId, {
         $inc: { totalSpent: order.totalAmount },
       });
@@ -193,15 +257,7 @@ export class OrderService {
 
     // If order is delivered or cancelled, release shipper if no other busy orders
     if ((nextStatus === 'delivered' || nextStatus === 'cancelled') && order.shipperId) {
-      const activeDeliveries = await Order.countDocuments({
-        shipperId: order.shipperId,
-        status: { $in: ['out_for_delivery', 'preparing', 'ready'] },
-        _id: { $ne: order._id },
-      });
-
-      if (activeDeliveries === 0) {
-        await Shipper.findByIdAndUpdate(order.shipperId, { status: 'available' });
-      }
+      await this.releaseShipperIfIdle(order.shipperId.toString(), order._id.toString());
     }
 
     return await this.getOrderById(orderId);
@@ -225,21 +281,53 @@ export class OrderService {
       throw new Error('Shipper not found');
     }
 
-    order.shipperId = new mongoose.Types.ObjectId(shipperId);
-    if (order.status === 'pending' || order.status === 'confirmed' || order.status === 'preparing') {
-      order.status = 'ready';
-      order.statusHistory.push({
-        status: 'ready',
-        at: new Date(),
-      });
+    if (order.status === 'delivered' || order.status === 'cancelled') {
+      throw new Error('Cannot assign a shipper to a completed or cancelled order');
     }
-    order.updatedAt = new Date();
-    await order.save();
+    if (shipper.storeId.toString() !== order.storeId.toString()) {
+      throw new Error('Shipper must belong to the same store as the order');
+    }
+    if (order.shipperId?.toString() === shipper._id.toString()) {
+      return await this.getOrderById(orderId);
+    }
+    const previousShipperId = order.shipperId?.toString();
+    if (previousShipperId === shipper._id.toString()) return await this.getOrderById(orderId);
 
-    // Set shipper status to 'busy'
-    await Shipper.findByIdAndUpdate(shipperId, { status: 'busy' });
+    // Claim the shipper atomically so two orders cannot reserve the same available driver.
+    const claimedShipper = await Shipper.findOneAndUpdate(
+      { _id: shipper._id, storeId: order.storeId, status: 'available' },
+      { $set: { status: 'busy' } },
+      { new: true }
+    );
+    if (!claimedShipper) throw new Error('Selected shipper is not available');
+
+    const orderFilter: Record<string, unknown> = { _id: order._id, status: order.status };
+    orderFilter.shipperId = order.shipperId || null;
+    const updatedOrder = await Order.findOneAndUpdate(
+      orderFilter,
+      { $set: { shipperId: claimedShipper._id, updatedAt: new Date() } },
+      { new: true, runValidators: true }
+    );
+    if (!updatedOrder) {
+      await this.releaseShipperIfIdle(claimedShipper._id.toString());
+      throw new Error('Order changed while this request was being processed; refresh and try again');
+    }
+
+    if (previousShipperId) await this.releaseShipperIfIdle(previousShipperId, order._id.toString());
 
     return await this.getOrderById(orderId);
+  }
+
+  private static async releaseShipperIfIdle(shipperId: string, exceptOrderId?: string) {
+    const query: Record<string, unknown> = {
+      shipperId: new mongoose.Types.ObjectId(shipperId),
+      status: { $nin: ['delivered', 'cancelled'] },
+    };
+    if (exceptOrderId) query._id = { $ne: new mongoose.Types.ObjectId(exceptOrderId) };
+    const activeOrders = await Order.countDocuments(query);
+    if (activeOrders === 0) {
+      await Shipper.findOneAndUpdate({ _id: shipperId, status: 'busy' }, { $set: { status: 'available' } });
+    }
   }
 
   /**
@@ -263,26 +351,25 @@ export class OrderService {
       'Payment Method',
       'Delivery Address',
       'Note',
-    ].join(',');
+    ].map(csvCell).join(',');
 
     const rows = orders.map((order: any) => {
       const orderId = order._id.toString();
       const date = new Date(order.createdAt).toISOString();
-      const customerName = `"${(order.customerId?.name || 'N/A').replace(/"/g, '""')}"`;
-      const customerPhone = `"${(order.customerId?.phone || 'N/A').replace(/"/g, '""')}"`;
-      const storeName = `"${(order.storeId?.name || 'N/A').replace(/"/g, '""')}"`;
-      const shipperName = `"${(order.shipperId?.fullName || 'Unassigned').replace(/"/g, '""')}"`;
-      const itemsList = `"${order.items
+      const customerName = order.customerId?.name || 'N/A';
+      const customerPhone = order.customerId?.phone || 'N/A';
+      const storeName = order.storeId?.name || 'N/A';
+      const shipperName = order.shipperId?.fullName || 'Unassigned';
+      const itemsList = order.items
         .map((i: any) => `${i.name} (x${i.qty})`)
-        .join('; ')
-        .replace(/"/g, '""')}"`;
+        .join('; ');
       const subtotal = order.subtotal;
       const deliveryFee = order.deliveryFee;
       const totalAmount = order.totalAmount;
       const status = order.status;
       const paymentMethod = order.paymentMethod;
-      const address = `"${(order.deliveryAddress || '').replace(/"/g, '""')}"`;
-      const note = `"${(order.note || '').replace(/"/g, '""')}"`;
+      const address = order.deliveryAddress || '';
+      const note = order.note || '';
 
       return [
         orderId,
@@ -299,7 +386,7 @@ export class OrderService {
         paymentMethod,
         address,
         note,
-      ].join(',');
+      ].map(csvCell).join(',');
     });
 
     return [header, ...rows].join('\n');

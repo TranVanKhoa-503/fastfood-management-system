@@ -1,0 +1,132 @@
+[
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086aa"
+    },
+    "fullName": "Nguyễn Thành Đạt",
+    "phone": "0981112233",
+    "vehicle": "Honda Wave Alpha",
+    "licensePlate": "29-B1 567.89",
+    "status": "busy",
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868e"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001117"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001164"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ab"
+    },
+    "fullName": "Trần Quốc Tuấn",
+    "phone": "0982223344",
+    "vehicle": "Yamaha Sirius",
+    "licensePlate": "29-E1 123.45",
+    "status": "available",
+    "storeId": {
+      "$oid": "6b030119771d087f9bf0868f"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001117"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001165"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ac"
+    },
+    "fullName": "Lê Văn Phong",
+    "phone": "0904445566",
+    "vehicle": "Honda Vision",
+    "licensePlate": "59-S2 888.99",
+    "status": "available",
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08690"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001117"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001165"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ad"
+    },
+    "fullName": "Phạm Hữu Nghĩa",
+    "phone": "0905556677",
+    "vehicle": "Honda Air Blade",
+    "licensePlate": "59-P1 999.22",
+    "status": "available",
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08691"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001117"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001165"
+      }
+    }
+  },
+  {
+    "_id": {
+      "$oid": "6b030119771d087f9bf086ae"
+    },
+    "fullName": "Đỗ Hữu Thắng",
+    "phone": "0936667788",
+    "vehicle": "Yamaha Grande",
+    "licensePlate": "43-C1 777.33",
+    "status": "busy",
+    "storeId": {
+      "$oid": "6b030119771d087f9bf08692"
+    },
+    "__v": {
+      "$numberInt": "0"
+    },
+    "createdAt": {
+      "$date": {
+        "$numberLong": "1795359001117"
+      }
+    },
+    "updatedAt": {
+      "$date": {
+        "$numberLong": "1795359001165"
+      }
+    }
+  }
+]

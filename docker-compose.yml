@@ -1,0 +1,17 @@
+services:
+  mongodb:
+    image: mongo:7.0
+    container_name: fastfood-mongo
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:27017:27017"
+    volumes:
+      - fastfood-mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  fastfood-mongo-data:
