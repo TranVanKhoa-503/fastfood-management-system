@@ -7,7 +7,9 @@ const COLLECTIONS = ['stores', 'customers', 'menuitems', 'shippers', 'orders', '
 const EJSON = mongoose.mongo.BSON.EJSON;
 
 async function exportBackup() {
-  const outputDirectory = path.resolve(process.argv[2] || path.join(process.cwd(), 'backup'));
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  const defaultDirectory = path.join(__dirname, '..', 'live-backups', `backup-${timestamp}`);
+  const outputDirectory = path.resolve(process.argv[2] || defaultDirectory);
   await mongoose.connect(MONGODB_URI);
   try {
     const db = mongoose.connection.db;

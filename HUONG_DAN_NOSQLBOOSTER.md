@@ -122,13 +122,15 @@ Trong ứng dụng, thao tác thêm/sửa/xóa món vẫn dùng giao diện đ�
 npm run backup
 ```
 
+Bản xuất dữ liệu thực tế được ghi vào thư mục có dấu thời gian `server/live-backups/`, thư mục này không được đưa lên Git vì có thể chứa thông tin cá nhân. Snapshot tổng hợp dùng cho demo nằm riêng trong `server/backup/`.
+
 Để tạo lại snapshot dữ liệu demo mà không cần database đang chạy:
 
 ```powershell
 npm run backup:demo
 ```
 
-NoSQLBooster cũng hỗ trợ tác vụ import/export JSON/BSON và giao diện cho MongoDB backup tools; tên menu có thể khác theo phiên bản cài đặt. Snapshot kèm theo gói nằm trong `server/backup/`.
+NoSQLBooster cũng hỗ trợ tác vụ import/export JSON/BSON và giao diện cho MongoDB backup tools; tên menu có thể khác theo phiên bản cài đặt. Snapshot tổng hợp kèm theo gói nằm trong `server/backup/`.
 
 ## Kịch bản thuyết trình ngắn
 

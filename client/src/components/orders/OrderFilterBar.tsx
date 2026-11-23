@@ -1,5 +1,5 @@
 import React from 'react';
-import { Search, Filter, Calendar, Store as StoreIcon } from 'lucide-react';
+import { Search, Calendar, Store as StoreIcon } from 'lucide-react';
 import { IStore } from '../../types/index.js';
 
 interface OrderFilterBarProps {

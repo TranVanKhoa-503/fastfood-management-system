@@ -9,10 +9,12 @@
 
 Lần đầu chạy, script tạo `server/.env`, khởi động MongoDB bằng Docker, cài các gói theo lockfile và nạp dữ liệu demo nếu cơ sở dữ liệu còn trống. Lần sau, dữ liệu MongoDB được giữ nguyên.
 
+API mặc định chỉ lắng nghe trên máy hiện tại (`127.0.0.1`) vì bản demo chưa có đăng nhập. `CLIENT_URL` giới hạn origin của giao diện. Chỉ cấu hình `HOST=0.0.0.0` khi bạn chủ động cho máy khác truy cập và đã bổ sung bảo vệ phù hợp.
+
 ## Chạy thủ công
 
 ```powershell
-Copy-Item server/.env.example server/.env
+if (-not (Test-Path server/.env)) { Copy-Item server/.env.example server/.env }
 docker compose up -d mongodb
 npm run install:all
 npm run seed
@@ -38,7 +40,7 @@ npm run backup
 npm run restore
 ```
 
-Backup được ghi vào `server/backup/`. Khôi phục chỉ chạy trên database trống. Để thay thế dữ liệu hiện có, sao lưu trước rồi dùng `npm --prefix server run restore -- backup --replace`. Lệnh `npm run backup:demo` tạo lại snapshot dữ liệu demo có sẵn mà không cần database đang chạy.
+`npm run backup` ghi bản sao lưu database đang cấu hình vào thư mục riêng có dấu thời gian `server/live-backups/` (đã loại khỏi Git vì có thể chứa dữ liệu cá nhân). `npm run restore` khôi phục snapshot demo đã commit trong `server/backup/` vào database trống. Muốn khôi phục bản sao lưu riêng, truyền đúng đường dẫn thư mục dưới `server/live-backups/` sau dấu `--`. Chỉ dùng `--replace` sau khi đã xác nhận đúng database và có bản sao lưu an toàn. Lệnh `npm run backup:demo` tạo lại snapshot tổng hợp trong `server/backup/` mà không cần database đang chạy.
 
 ## Quản trị MongoDB bằng NoSQLBooster
 

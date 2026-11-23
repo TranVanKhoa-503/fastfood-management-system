@@ -15,8 +15,6 @@ import {
   DollarSign,
   ShoppingBag,
   TrendingUp,
-  Users,
-  Store,
   Star,
   Flame,
   Award,
@@ -361,7 +359,6 @@ export const AnalyticsOverview: React.FC = () => {
                   paddingAngle={3}
                 >
                   {orderStatus.map((entry, index) => {
-                    const colorMeta = getStatusColor(entry.status);
                     return <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />;
                   })}
                 </Pie>

@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import React, { lazy, Suspense, useState } from 'react';
 import { ThemeProvider } from './store/themeStore.js';
 import { ToastProvider } from './store/toastStore.js';
 import { Layout } from './components/layout/Layout.js';
 
-import { DashboardPage } from './pages/DashboardPage.js';
-import { OrdersPage } from './pages/OrdersPage.js';
-import { MenuPage } from './pages/MenuPage.js';
-import { CustomersPage } from './pages/CustomersPage.js';
-import { StoresPage } from './pages/StoresPage.js';
-import { ShippersPage } from './pages/ShippersPage.js';
-import { ReviewsPage } from './pages/ReviewsPage.js';
-import { AnalyticsPage } from './pages/AnalyticsPage.js';
-import { SettingsPage } from './pages/SettingsPage.js';
+const DashboardPage = lazy(() => import('./pages/DashboardPage.js').then((page) => ({ default: page.DashboardPage })));
+const OrdersPage = lazy(() => import('./pages/OrdersPage.js').then((page) => ({ default: page.OrdersPage })));
+const MenuPage = lazy(() => import('./pages/MenuPage.js').then((page) => ({ default: page.MenuPage })));
+const CustomersPage = lazy(() => import('./pages/CustomersPage.js').then((page) => ({ default: page.CustomersPage })));
+const StoresPage = lazy(() => import('./pages/StoresPage.js').then((page) => ({ default: page.StoresPage })));
+const ShippersPage = lazy(() => import('./pages/ShippersPage.js').then((page) => ({ default: page.ShippersPage })));
+const ReviewsPage = lazy(() => import('./pages/ReviewsPage.js').then((page) => ({ default: page.ReviewsPage })));
+const AnalyticsPage = lazy(() => import('./pages/AnalyticsPage.js').then((page) => ({ default: page.AnalyticsPage })));
+const SettingsPage = lazy(() => import('./pages/SettingsPage.js').then((page) => ({ default: page.SettingsPage })));
 
 export function App() {
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
@@ -45,7 +45,9 @@ export function App() {
     <ThemeProvider>
       <ToastProvider>
         <Layout currentTab={currentTab} onSelectTab={setCurrentTab}>
-          {renderContent()}
+          <Suspense fallback={<div className="p-8 text-center text-sm text-slate-500" role="status">Đang tải màn hình...</div>}>
+            {renderContent()}
+          </Suspense>
         </Layout>
       </ToastProvider>
     </ThemeProvider>

@@ -2,7 +2,7 @@ import React from 'react';
 import { IReview } from '../../types/index.js';
 import { formatDate } from '../../lib/formatters.js';
 import { RatingStars } from './RatingStars.js';
-import { Star, Store, User, MessageSquare, Trash2 } from 'lucide-react';
+import { Star, Store, MessageSquare, Trash2 } from 'lucide-react';
 import { EmptyState } from '../common/EmptyState.js';
 
 interface ReviewListProps {

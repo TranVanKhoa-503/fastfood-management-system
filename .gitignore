@@ -36,6 +36,9 @@ build/
 !*.env.example
 !.env.example
 
+# Live database exports may contain personal or production data.
+server/live-backups/
+
 # OS generated files
 .DS_Store
 Thumbs.db

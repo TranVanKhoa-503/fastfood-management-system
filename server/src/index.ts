@@ -7,10 +7,15 @@ import { errorHandler } from './middleware/errorHandler.js';
 
 const app = express();
 
-// Middlewares
-app.use(cors({ origin: '*' }));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// Keep cross-origin access limited to the configured local dashboard.
+app.use(cors({ origin: ENV.CLIENT_URL }));
+app.use(express.json({ limit: '256kb' }));
+app.use('/api', (req, res, next) => {
+  if (['POST', 'PUT', 'PATCH'].includes(req.method) && !req.is('application/json')) {
+    return res.status(415).json({ success: false, message: 'Request body must use application/json' });
+  }
+  next();
+});
 
 // API routes
 app.use('/api', apiRouter);
@@ -33,15 +38,26 @@ app.get('/', (_req, res) => {
   });
 });
 
+app.use('/api', (_req, res) => {
+  res.status(404).json({ success: false, message: 'API endpoint not found' });
+});
+
 // Error handling middleware
 app.use(errorHandler);
 
 // Start server
 const startServer = async () => {
   await connectDB();
-  app.listen(ENV.PORT, () => {
-    console.log(`[FastFood Server] Running at http://localhost:${ENV.PORT}`);
+  const server = app.listen(ENV.PORT, ENV.HOST, () => {
+    console.log(`[FastFood Server] Running at http://${ENV.HOST}:${ENV.PORT}`);
+  });
+  server.on('error', (error) => {
+    console.error('[FastFood Server] Could not start:', error.message);
+    process.exit(1);
   });
 };
 
-startServer();
+void startServer().catch((error: unknown) => {
+  console.error('[FastFood Server] Startup failed:', error instanceof Error ? error.message : 'Unknown error');
+  process.exit(1);
+});

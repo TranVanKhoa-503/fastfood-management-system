@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Download, Loader2 } from 'lucide-react';
+import { Download } from 'lucide-react';
 import { Button } from '../common/Button.js';
 import { useToast } from '../../store/toastStore.js';
 

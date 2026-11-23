@@ -139,8 +139,14 @@ export class OrderService {
     if (typeof data.deliveryAddress !== 'string' || !data.deliveryAddress.trim()) {
       throw new Error('Delivery address is required');
     }
+    if (data.deliveryAddress.trim().length > 300) {
+      throw new Error('Delivery address must be 300 characters or fewer');
+    }
     if (!Array.isArray(data.items) || data.items.length === 0) {
       throw new Error('An order must contain at least one menu item');
+    }
+    if (data.items.length > 50) {
+      throw new Error('An order cannot contain more than 50 menu item lines');
     }
     for (const item of data.items) {
       if (!item || !mongoose.isValidObjectId(item.menuItemId) || !Number.isInteger(Number(item.qty)) || Number(item.qty) < 1 || Number(item.qty) > 99) {
@@ -154,7 +160,11 @@ export class OrderService {
     const [customer, store, menuItems] = await Promise.all([
       Customer.findById(data.customerId),
       Store.findById(data.storeId),
-      MenuItem.find({ _id: { $in: data.items.map((item) => item.menuItemId) }, isAvailable: true }),
+      MenuItem.find({
+        _id: { $in: data.items.map((item) => item.menuItemId) },
+        isAvailable: true,
+        $or: [{ storeId: null }, { storeId: new mongoose.Types.ObjectId(data.storeId) }],
+      }),
     ]);
     if (!customer) throw new Error('Customer not found');
     if (!store) throw new Error('Store not found');
@@ -169,7 +179,7 @@ export class OrderService {
     const orderItems = Array.from(quantities, ([menuItemId, qty]) => {
       if (qty > 99) throw new Error('A menu item quantity cannot exceed 99 per order');
       const menuItem = menuById.get(menuItemId);
-      if (!menuItem) throw new Error(`Menu item ${menuItemId} does not exist or is unavailable`);
+      if (!menuItem) throw new Error(`Menu item ${menuItemId} does not exist, is unavailable, or is not offered at this store`);
       return {
         menuItemId: menuItem._id,
         name: menuItem.name,
@@ -186,6 +196,10 @@ export class OrderService {
       throw new Error('Delivery fee must be a non-negative whole VND amount');
     }
     const totalAmount = subtotal + deliveryFee;
+    if (!Number.isSafeInteger(totalAmount)) throw new Error('Order total exceeds the supported VND amount');
+    if (typeof data.note === 'string' && data.note.length > 1000) {
+      throw new Error('Order note must be 1000 characters or fewer');
+    }
 
     const order = new Order({
       customerId: new mongoose.Types.ObjectId(data.customerId),
@@ -240,9 +254,19 @@ export class OrderService {
     if (nextStatus === 'out_for_delivery' && !order.shipperId) {
       throw new Error('Assign an available shipper before dispatching the order');
     }
+    if (nextStatus === 'out_for_delivery') {
+      const assignedShipperIsBusy = await Shipper.exists({
+        _id: order.shipperId,
+        storeId: order.storeId,
+        status: 'busy',
+      });
+      if (!assignedShipperIsBusy) {
+        throw new Error('The assigned shipper is not reserved for this order; assign an available shipper again');
+      }
+    }
     const changedAt = new Date();
     const updatedOrder = await Order.findOneAndUpdate(
-      { _id: order._id, status: previousStatus },
+      { _id: order._id, status: previousStatus, shipperId: order.shipperId || null },
       { $set: { status: nextStatus }, $push: { statusHistory: { status: nextStatus, at: changedAt } } },
       { new: true, runValidators: true }
     );
@@ -256,8 +280,8 @@ export class OrderService {
     }
 
     // If order is delivered or cancelled, release shipper if no other busy orders
-    if ((nextStatus === 'delivered' || nextStatus === 'cancelled') && order.shipperId) {
-      await this.releaseShipperIfIdle(order.shipperId.toString(), order._id.toString());
+    if ((nextStatus === 'delivered' || nextStatus === 'cancelled') && updatedOrder.shipperId) {
+      await this.releaseShipperIfIdle(updatedOrder.shipperId.toString(), order._id.toString());
     }
 
     return await this.getOrderById(orderId);

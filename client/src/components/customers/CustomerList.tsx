@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ICustomer } from '../../types/index.js';
 import { formatCurrency, formatDate } from '../../lib/formatters.js';
-import { Eye, Edit2, Trash2, User, Phone, Mail, MapPin } from 'lucide-react';
+import { Eye, Edit2, Trash2, Phone, Mail, MapPin } from 'lucide-react';
 import { EmptyState } from '../common/EmptyState.js';
 
 interface CustomerListProps {

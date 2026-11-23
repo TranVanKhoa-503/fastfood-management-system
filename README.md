@@ -152,6 +152,7 @@ cd ../client && npm install
 Tạo file `server/.env` (hoặc copy từ `server/.env.example`):
 ```env
 PORT=5000
+HOST=127.0.0.1
 MONGODB_URI=mongodb://127.0.0.1:27017/fastfood_db
 NODE_ENV=development
 CLIENT_URL=http://localhost:5173
@@ -264,12 +265,12 @@ Trên Windows có thể dùng `scripts/start-demo.ps1` để khởi động Mong
 
 ## 💾 Sao lưu và khôi phục
 
-- `npm run backup`: xuất sáu collection ra Extended JSON trong `server/backup/`.
+- `npm run backup`: xuất sáu collection ra Extended JSON trong thư mục riêng có dấu thời gian `server/live-backups/`.
 - `npm run backup:demo`: tạo lại bộ dữ liệu mẫu để khôi phục khi chưa có database đang chạy.
 - `npm run restore`: khôi phục backup vào database trống.
 - Khôi phục thay thế dữ liệu cần có xác nhận tường minh: `npm --prefix server run restore -- backup --replace`.
 
-Backup chỉ chứa dữ liệu của database đang cấu hình trong `server/.env`. Kiểm tra `MONGODB_URI` trước khi sao lưu hoặc khôi phục.
+Backup chỉ chứa dữ liệu của database đang cấu hình trong `server/.env`. Kiểm tra `MONGODB_URI` trước khi sao lưu hoặc khôi phục. `server/live-backups/` được loại khỏi Git để tránh đưa dữ liệu thật/cá nhân lên repo; snapshot demo tổng hợp đã commit nằm ở `server/backup/`.
 
 ---
 
@@ -315,8 +316,8 @@ Backup chỉ chứa dữ liệu của database đang cấu hình trong `server/.
 
 ---
 
-## 🔒 Kiểm thử Chất lượng Code (Code Quality)
-- **TypeScript**: Strict mode trên cả Client và Server.
-- **Không dùng `any`**: Các interface dữ liệu và props được định nghĩa chặt chẽ.
-- **Xử lý trạng thái đầy đủ**: Có Loading Spinner, Empty State, Error Toast cảnh báo người dùng.
-- **Responsive Design**: Tương thích hoàn hảo trên mọi kích thước màn hình (Mobile, Tablet, Desktop).
+## 🔒 Chất lượng và phạm vi bảo mật
+- **TypeScript**: Bật strict mode ở Client và Server; một số callback thư viện và khối bắt lỗi vẫn dùng kiểu nới lỏng.
+- **Kiểm tra dữ liệu**: API kiểm tra các trường quan trọng, trạng thái đơn, ObjectId, số lượng và giá trị tiền trước khi ghi.
+- **Xử lý giao diện**: Các màn hình chính có trạng thái tải, dữ liệu trống và thông báo lỗi.
+- **Phạm vi triển khai**: Bản đồ án chưa có đăng nhập/phân quyền. API mặc định chỉ nghe trên `127.0.0.1` và chỉ bật CORS cho địa chỉ frontend cấu hình; không đổi `HOST` sang `0.0.0.0` khi chưa có xác thực và kiểm soát truy cập.

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { IOrder, OrderStatus } from '../../types/index.js';
+import { IOrder } from '../../types/index.js';
 import { Badge } from '../common/Badge.js';
-import { Button } from '../common/Button.js';
 import { formatCurrency, formatDate } from '../../lib/formatters.js';
-import { Eye, UserCheck, ChevronRight, ShoppingBag } from 'lucide-react';
+import { Eye, UserCheck, ShoppingBag } from 'lucide-react';
 import { OrderDetailModal } from './OrderDetailModal.js';
 import { AssignShipperModal } from './AssignShipperModal.js';
 import { EmptyState } from '../common/EmptyState.js';

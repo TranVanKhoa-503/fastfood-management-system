@@ -3,7 +3,7 @@ import { IShipper, IStore } from '../types/index.js';
 import { ShipperList } from '../components/shippers/ShipperList.js';
 import { ShipperModal } from '../components/shippers/ShipperModal.js';
 import { Button } from '../components/common/Button.js';
-import { Plus, RefreshCw, Search, Filter } from 'lucide-react';
+import { Plus, RefreshCw, Search } from 'lucide-react';
 import { useDebounce } from '../hooks/useDebounce.js';
 import api from '../lib/axios.js';
 import { useToast } from '../store/toastStore.js';

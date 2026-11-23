@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import mongoose from 'mongoose';
 import orderRoutes from './order.routes.js';
 import customerRoutes from './customer.routes.js';
 import storeRoutes from './store.routes.js';
@@ -18,10 +19,12 @@ apiRouter.use('/menu', menuRoutes);
 apiRouter.use('/analytics', analyticsRoutes);
 
 apiRouter.get('/health', (_req, res) => {
-  res.json({
-    status: 'ok',
+  const databaseReady = mongoose.connection.readyState === 1;
+  res.status(databaseReady ? 200 : 503).json({
+    status: databaseReady ? 'ok' : 'degraded',
     timestamp: new Date().toISOString(),
     service: 'FastFood Admin API',
+    database: databaseReady ? 'connected' : 'disconnected',
   });
 });
 

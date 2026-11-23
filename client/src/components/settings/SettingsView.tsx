@@ -12,7 +12,6 @@ import {
   Sun,
   Moon,
   Save,
-  CheckCircle2,
 } from 'lucide-react';
 
 export const SettingsView: React.FC = () => {
@@ -44,7 +43,7 @@ export const SettingsView: React.FC = () => {
   const [restaurantName, setRestaurantName] = useState(savedSettings.restaurantName);
   const [hotline, setHotline] = useState(savedSettings.hotline);
   const [taxCode, setTaxCode] = useState(savedSettings.taxCode);
-  const [currency, setCurrency] = useState('VND (đ)');
+  const currency = 'VND (đ)';
 
   // Profile state
   const [adminName, setAdminName] = useState(savedSettings.adminName);

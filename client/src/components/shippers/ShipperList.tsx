@@ -1,7 +1,7 @@
 import React from 'react';
 import { IShipper } from '../../types/index.js';
 import { Badge } from '../common/Badge.js';
-import { Bike, Phone, Store, Edit2, Trash2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Bike, Phone, Store, Edit2, Trash2 } from 'lucide-react';
 import { EmptyState } from '../common/EmptyState.js';
 
 interface ShipperListProps {

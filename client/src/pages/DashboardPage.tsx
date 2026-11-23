@@ -12,13 +12,10 @@ import { formatCurrency, formatShortDate, formatDate } from '../lib/formatters.j
 import {
   DollarSign,
   ShoppingBag,
-  TrendingUp,
   Users,
   Plus,
   ArrowRight,
   Store,
-  Bike,
-  Star,
   Eye,
 } from 'lucide-react';
 import {
@@ -76,7 +73,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({ onNavigate }) => {
   };
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-8" aria-busy={loading}>
       {/* Welcome Banner */}
       <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-orange-600 via-amber-600 to-orange-500 p-6 sm:p-8 text-white shadow-xl shadow-orange-600/15">
         <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">

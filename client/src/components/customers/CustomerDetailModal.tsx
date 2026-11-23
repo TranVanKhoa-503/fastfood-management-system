@@ -5,7 +5,7 @@ import { Badge } from '../common/Badge.js';
 import { ICustomer, IOrder } from '../../types/index.js';
 import { formatCurrency, formatDate } from '../../lib/formatters.js';
 import api from '../../lib/axios.js';
-import { User, Phone, Mail, MapPin, ShoppingBag, DollarSign, Calendar } from 'lucide-react';
+import { User, Phone, Mail, MapPin, ShoppingBag, DollarSign } from 'lucide-react';
 
 interface CustomerDetailModalProps {
   customerId: string | null;

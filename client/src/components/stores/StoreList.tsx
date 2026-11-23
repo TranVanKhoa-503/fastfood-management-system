@@ -2,7 +2,7 @@ import React from 'react';
 import { IStore } from '../../types/index.js';
 import { formatCurrency } from '../../lib/formatters.js';
 import { Badge } from '../common/Badge.js';
-import { Store, MapPin, Phone, Clock, DollarSign, ShoppingBag, Edit2, Trash2, Navigation } from 'lucide-react';
+import { Store, MapPin, Phone, Clock, Edit2, Trash2, Navigation } from 'lucide-react';
 import { EmptyState } from '../common/EmptyState.js';
 
 interface StoreListProps {

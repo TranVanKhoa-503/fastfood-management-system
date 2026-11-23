@@ -12,7 +12,6 @@ import {
   Bike,
   CreditCard,
   MapPin,
-  Calendar,
   FileText,
   UserPlus,
 } from 'lucide-react';

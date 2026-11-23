@@ -13,4 +13,4 @@ This folder contains an Extended JSON demo snapshot for the six collections used
 
 Restore into the configured MongoDB database with `npm run restore`. The target database must be empty. To intentionally replace existing project collections, back them up first and run `npm --prefix server run restore -- backup --replace`.
 
-To make a new demo snapshot without a running database, use `npm run backup:demo`. To export the current live database, use `npm run backup`.
+To make a new demo snapshot without a running database, use `npm run backup:demo`. To export the current live database, use `npm run backup`; it writes to a timestamped directory under `server/live-backups/`, which is excluded from Git because it may contain personal or production data.

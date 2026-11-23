@@ -6,7 +6,7 @@ import { Select } from '../common/Select.js';
 import { ICustomer, IStore, IMenuItem } from '../../types/index.js';
 import api from '../../lib/axios.js';
 import { formatCurrency } from '../../lib/formatters.js';
-import { Plus, Trash2, ShoppingCart, AlertCircle } from 'lucide-react';
+import { Plus, Trash2, ShoppingCart } from 'lucide-react';
 import { useToast } from '../../store/toastStore.js';
 
 interface CreateOrderModalProps {
