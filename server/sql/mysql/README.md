@@ -38,6 +38,8 @@ CALL sp_transition_order(@order_id, 'out_for_delivery');
 CALL sp_transition_order(@order_id, 'delivered');
 ```
 
+Thủ tục chuyển đơn sang `out_for_delivery` kiểm tra đơn đã gán shipper và shipper đang `busy`. Các thủ tục dùng transaction cùng khóa hàng để tránh hai đơn cùng nhận một shipper.
+
 Các lệnh `CALL` làm thay đổi dữ liệu demo. Nạp lại vào schema mới nếu muốn quay về trạng thái ban đầu.
 
 ## Tạo lại file SQL

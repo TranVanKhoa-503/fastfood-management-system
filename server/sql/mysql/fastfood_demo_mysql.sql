@@ -569,6 +569,7 @@ main: BEGIN
   DECLARE v_status VARCHAR(24) DEFAULT NULL;
   DECLARE v_customer_id CHAR(24) DEFAULT NULL;
   DECLARE v_shipper_id CHAR(24) DEFAULT NULL;
+  DECLARE v_shipper_status VARCHAR(16) DEFAULT NULL;
   DECLARE v_total BIGINT UNSIGNED DEFAULT 0;
   DECLARE v_active_orders INT DEFAULT 0;
   DECLARE v_found BOOLEAN DEFAULT TRUE;
@@ -588,8 +589,15 @@ main: BEGIN
     (v_status = 'ready' AND p_next_status IN ('out_for_delivery','cancelled')) OR
     (v_status = 'out_for_delivery' AND p_next_status IN ('delivered','cancelled'))
   ) THEN SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Invalid order status transition'; END IF;
-  IF p_next_status = 'out_for_delivery' AND v_shipper_id IS NULL THEN
-    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Assign a shipper before dispatch';
+  IF p_next_status = 'out_for_delivery' THEN
+    IF v_shipper_id IS NULL THEN
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Assign a shipper before dispatch';
+    END IF;
+    SET v_found = TRUE;
+    SELECT status INTO v_shipper_status FROM shippers WHERE id = v_shipper_id FOR UPDATE;
+    IF NOT v_found OR v_shipper_status <> 'busy' THEN
+      SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Assigned shipper must be reserved before dispatch';
+    END IF;
   END IF;
 
   UPDATE orders SET status = p_next_status, updated_at = UTC_TIMESTAMP(3) WHERE id = p_order_id;
