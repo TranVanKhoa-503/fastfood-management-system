@@ -181,12 +181,24 @@ Không chạy file seed này trong cửa sổ query của NoSQLBooster; hãy dù
 
 ### SQL tham khảo (không bắt buộc cho demo NoSQL)
 
-Mở `server/sql/mysql/fastfood_demo_mysql.sql` bằng MySQL Workbench và chạy toàn bộ file, hoặc dùng:
+Muốn chạy trọn phần tham khảo SQL trong một file, mở `server/sql/mysql/fastfood_demo_full.sql` bằng MySQL Workbench. File gồm schema, dữ liệu mẫu, view, stored procedure và 28 ví dụ truy vấn. Chạy một lần trên schema mới. Hoặc có thể chạy `fastfood_demo_mysql.sql` trước rồi mở riêng `fastfood_demo_queries.sql`.
+
+```bash
+mysql -u root -p < server/sql/mysql/fastfood_demo_full.sql
+```
+
+Để ghép lại file full sau khi cập nhật schema/dữ liệu hoặc bộ truy vấn, chạy:
+```bash
+npm run sql:full
+```
+
+File tạo schema `fastfood_demo_mysql` độc lập. Đây là bản SQL tham khảo; ứng dụng chạy thật vẫn dùng MongoDB.
+File SQL có 5 view báo cáo và 2 procedure mẫu để gán shipper, kiểm tra chuyển trạng thái, ghi lịch sử, cập nhật chi tiêu khi hoàn tất và giải phóng shipper.
+
+Hoặc chỉ nạp schema và dữ liệu bằng file cơ sở:
 ```bash
 mysql -u root -p < server/sql/mysql/fastfood_demo_mysql.sql
 ```
-File tạo schema `fastfood_demo_mysql` độc lập. Đây là bản SQL tham khảo; ứng dụng chạy thật vẫn dùng MongoDB.
-File SQL có 5 view báo cáo và 2 procedure mẫu để gán shipper, kiểm tra chuyển trạng thái, ghi lịch sử, cập nhật chi tiêu khi hoàn tất và giải phóng shipper.
 Sau khi nạp schema, mở `server/sql/mysql/fastfood_demo_queries.sql` để xem 28 ví dụ truy vấn: lọc, JOIN, nhóm doanh thu, top món/khách, đối soát dữ liệu, index/EXPLAIN và CRUD thử nghiệm trong transaction kết thúc bằng `ROLLBACK`.
 
 ---

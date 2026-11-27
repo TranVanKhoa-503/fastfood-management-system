@@ -2,6 +2,8 @@
 
 File `fastfood_demo_mysql.sql` là bản chuyển đổi quan hệ từ cùng bộ dữ liệu demo Extended JSON dùng cho MongoDB. SQL này tạo schema `fastfood_demo_mysql`, 8 bảng có khóa chính/khóa ngoại, 5 view báo cáo và 2 thủ tục giao dịch cho gán shipper/chuyển trạng thái. Dữ liệu là dữ liệu tổng hợp để thuyết trình, không lấy từ cơ sở dữ liệu thật.
 
+Muốn chạy trọn trong một file, dùng `fastfood_demo_full.sql`. File này ghép schema, dữ liệu, view/thủ tục và query workbook. Chạy trên schema mới; khi cập nhật thành phần, chạy `npm run sql:full` từ thư mục gốc để ghép lại.
+
 Ứng dụng chính vẫn kết nối MongoDB. File SQL là phần tham khảo để trình bày thiết kế quan hệ và truy vấn trên MySQL Workbench; nó không thay MongoDB trong luồng chạy React/Express.
 
 ## Nạp bằng MySQL Workbench

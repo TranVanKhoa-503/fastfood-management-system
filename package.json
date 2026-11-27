@@ -10,6 +10,7 @@
     "backup": "npm --prefix server run backup",
     "backup:demo": "npm --prefix server run backup:demo",
     "sql:demo": "python server/scripts/export_mysql_reference.py",
+    "sql:full": "python server/scripts/combine_mysql_demo.py",
     "restore": "npm --prefix server run restore",
     "server": "npm --prefix server run dev",
     "client": "npm --prefix client run dev",
