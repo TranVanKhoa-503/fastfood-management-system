@@ -18,6 +18,10 @@ mysql -u root -p < server/sql/mysql/fastfood_demo_mysql.sql
 
 ## Truy vấn demo
 
+Sau khi nạp schema và dữ liệu bằng `fastfood_demo_mysql.sql`, mở `fastfood_demo_queries.sql` để chạy bộ 28 ví dụ độc lập. Bộ này gồm tìm kiếm/lọc, JOIN nhiều bảng, lịch sử đơn, báo cáo theo ngày/chi nhánh/danh mục, top khách/món, đối soát tổng tiền và thống kê, cùng `SHOW INDEX`/`EXPLAIN`.
+
+Các câu truy vấn chỉ đọc ở phần đầu. Cuối file có một khối CRUD thử nghiệm cho `menu_items`, được bao trong transaction và kết thúc bằng `ROLLBACK` để không lưu thay đổi nếu chạy trọn khối.
+
 ```sql
 USE fastfood_demo_mysql;
 SELECT * FROM v_store_revenue ORDER BY revenue_vnd DESC;

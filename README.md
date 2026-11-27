@@ -187,6 +187,7 @@ mysql -u root -p < server/sql/mysql/fastfood_demo_mysql.sql
 ```
 File tạo schema `fastfood_demo_mysql` độc lập. Đây là bản SQL tham khảo; ứng dụng chạy thật vẫn dùng MongoDB.
 File SQL có 5 view báo cáo và 2 procedure mẫu để gán shipper, kiểm tra chuyển trạng thái, ghi lịch sử, cập nhật chi tiêu khi hoàn tất và giải phóng shipper.
+Sau khi nạp schema, mở `server/sql/mysql/fastfood_demo_queries.sql` để xem 28 ví dụ truy vấn: lọc, JOIN, nhóm doanh thu, top món/khách, đối soát dữ liệu, index/EXPLAIN và CRUD thử nghiệm trong transaction kết thúc bằng `ROLLBACK`.
 
 ---
 
